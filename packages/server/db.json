@@ -1,8 +1,13 @@
 {
-  "data": [
+  "admin": [
     {
       "id": 1,
-      "name": "asdas"
+      "role": "ADMIN",
+      "name": "admin",
+      "username": "admin",
+      "password": "admin123"
     }
-  ]
+  ],
+  "users": [],
+  "events": []
 }
