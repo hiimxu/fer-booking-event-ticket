@@ -4,5 +4,6 @@
             "~/*": ["./*"]
         }
     },
-    "include": ["next-env.d.ts", "**/*.js", "**/*.jsx", "next.config.mjs"]
+    "include": ["**/*.js", "**/*.jsx"],
+    "exclude": ["node_modules", "**/public/**/*"]
 }

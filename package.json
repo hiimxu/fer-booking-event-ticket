@@ -2,10 +2,16 @@
   "name": "codebase-next-dual",
   "packageManager": "yarn@4.0.2",
   "dependencies": {
+    "@babel/runtime": "^7.23.9",
+    "@gumlet/react-hls-player": "^1.0.1",
+    "@uidotdev/usehooks": "^2.4.1",
     "axios": "^1.6.7",
     "clsx": "^2.1.0",
     "create-next-app-ts": "^0.0.3",
     "json-server": "^1.0.0-alpha.23",
+    "next-plugin-antd-less": "^1.8.0",
+    "next-transpile-modules": "^10.0.1",
+    "react-usestateref": "^1.0.8",
     "tailwind-merge": "^2.2.1"
   },
   "scripts": {
@@ -15,6 +21,7 @@
     "packages/*"
   ],
   "devDependencies": {
+    "babel-plugin-import": "^1.13.8",
     "prettier": "^3.2.5",
     "prettier-plugin-tailwindcss": "^0.5.11"
   }
