@@ -2,10 +2,11 @@
   "name": "codebase-next-dual",
   "packageManager": "yarn@4.0.2",
   "dependencies": {
-    "create-next-app-ts": "^0.0.3"
+    "create-next-app-ts": "^0.0.3",
+    "json-server": "^1.0.0-alpha.23"
   },
   "scripts": {
-    "dev": "yarn workspaces foreach -Rpt --from '{pc,mo}' run dev"
+    "dev": "yarn workspaces foreach -Rpt --from '{b2c-admin,b2c-client,server}' run dev"
   },
   "workspaces": [
     "packages/*"
