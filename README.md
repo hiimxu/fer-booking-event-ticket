@@ -1,4 +1,5 @@
 # codebase-next-dual
+
 ## Getting Started
 
 Install the dependencies by running the following command in the project root
@@ -10,7 +11,7 @@ yarn
 Run the development server:
 
 ```bash
-yarn dev # run both pc and mobile site
+yarn dev # run both client and admin site
 
 ```
 
