@@ -5,6 +5,7 @@
     "@babel/runtime": "^7.23.9",
     "@gumlet/react-hls-player": "^1.0.1",
     "@uidotdev/usehooks": "^2.4.1",
+    "antd": "^5.14.2",
     "axios": "^1.6.7",
     "clsx": "^2.1.0",
     "create-next-app-ts": "^0.0.3",

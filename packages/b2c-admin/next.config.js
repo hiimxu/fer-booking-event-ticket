@@ -16,10 +16,6 @@ const nextConfig = withTM(
             outputFileTracingRoot: path.join(__dirname, '../../'),
             newNextLinkBehavior: true,
         },
-        i18n: {
-            locales: ['ko'],
-            defaultLocale: 'ko',
-        },
         modifyVars: { '@primary-color': '#028267' },
         lessVarsFilePathAppendToEndOfContent: false,
         cssLoaderOptions: {
