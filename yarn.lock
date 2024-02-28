@@ -1858,6 +1858,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "codebase-next-dual@workspace:."
   dependencies:
+    "@ant-design/icons": "npm:^5.3.0"
     "@babel/runtime": "npm:^7.23.9"
     "@gumlet/react-hls-player": "npm:^1.0.1"
     "@uidotdev/usehooks": "npm:^2.4.1"
