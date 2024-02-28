@@ -49,3 +49,7 @@ const Auth = () => {
 };
 
 export default Auth;
+
+Auth.getLayout = function getLayout(page) {
+    return page;
+};
