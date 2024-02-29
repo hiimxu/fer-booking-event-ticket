@@ -12,6 +12,7 @@ import { Menu } from 'antd';
 import { getWindowDimensions } from 'common/lib/getWindowDimensions';
 import Link from 'next/link';
 import { cn } from 'common/lib/utils';
+import { useRouter } from 'next/router';
 
 function getItem(label, key, icon, children, type) {
     return {
@@ -26,42 +27,42 @@ function getItem(label, key, icon, children, type) {
 const items = [
     getItem(
         'Events',
-        '1',
+        '/',
         <Link href={'/'}>
             <CalendarOutlined />
         </Link>
     ),
     getItem(
         'Tickets',
-        '2',
+        '/tickets',
         <Link href={'/tickets'}>
             <ContainerOutlined />
         </Link>
     ),
     getItem(
         'Booking',
-        '3',
+        '/booking',
         <Link href={'/'}>
             <CheckSquareOutlined />
         </Link>
     ),
     getItem(
         'Users',
-        '4',
+        '/users',
         <Link href={'/'}>
             <UserOutlined />
         </Link>
     ),
     getItem(
         'Reporting and Analysis',
-        '5',
+        '/report',
         <Link href={'/'}>
             <AreaChartOutlined />
         </Link>
     ),
     getItem(
         'Promotion ',
-        '6',
+        '/promotion',
         <Link href={'/'}>
             <SolutionOutlined />
         </Link>
@@ -69,6 +70,12 @@ const items = [
 ];
 
 const Sidebar = () => {
+    const router = useRouter();
+    const [current, setCurrent] = useState(router.pathname);
+    useEffect(() => {
+        setCurrent(router.pathname);
+    }, [router.pathname]);
+
     const [windowDimensions, setWindowDimensions] = useState(
         getWindowDimensions()
     );
@@ -99,9 +106,9 @@ const Sidebar = () => {
                     height: 'calc(100vh - 56px)',
                 }}
                 mode="inline"
-                defaultSelectedKeys={['1']}
                 inlineCollapsed={collapsed}
                 items={items}
+                selectedKeys={false}
             />
         </div>
     );
