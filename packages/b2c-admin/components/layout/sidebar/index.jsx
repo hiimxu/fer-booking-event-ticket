@@ -11,6 +11,7 @@ import {
 import { Menu } from 'antd';
 import { getWindowDimensions } from 'common/lib/getWindowDimensions';
 import Link from 'next/link';
+import { cn } from 'common/lib/utils';
 
 function getItem(label, key, icon, children, type) {
     return {
@@ -26,14 +27,14 @@ const items = [
     getItem(
         'Events',
         '1',
-        <Link href={'/events'}>
+        <Link href={'/'}>
             <CalendarOutlined />
         </Link>
     ),
     getItem(
         'Tickets',
         '2',
-        <Link href={'/'}>
+        <Link href={'/tickets'}>
             <ContainerOutlined />
         </Link>
     ),
@@ -84,7 +85,6 @@ const Sidebar = () => {
     }, []);
 
     useEffect(() => {
-        console.log(windowDimensions);
         if (windowDimensions.width <= 960) {
             setCollapsed(true);
         } else {
@@ -93,7 +93,7 @@ const Sidebar = () => {
     }, [windowDimensions]);
 
     return (
-        <div className="w-60">
+        <div className={cn('shadow-sm', !collapsed ? 'w-60' : '')}>
             <Menu
                 style={{
                     height: 'calc(100vh - 56px)',

@@ -8,7 +8,9 @@ const DefaultLayout = ({ children }) => {
             <Navbar />
             <div className="flex">
                 <Sidebar />
-                <main>{children}</main>
+                <main className="max-h-[calc(100vh_-_56px)] flex-1 overflow-auto">
+                    {children}
+                </main>
             </div>
         </>
     );
