@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useEffect, useReducer } from 'react';
 import * as request from '../lib/httpRequest';
 
@@ -42,9 +41,13 @@ export const useQuery = (endpointURL) => {
         }
     };
 
+    const reload = () => {
+        trigger(endpointURL);
+    };
+
     useEffect(() => {
         trigger(endpointURL);
     }, [endpointURL]);
 
-    return { ...state };
+    return { ...state, reload };
 };

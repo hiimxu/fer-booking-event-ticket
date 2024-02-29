@@ -1,11 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Form, Input, Button, Select, Upload } from 'antd';
 import { useVnApi } from 'common/hooks/vn-api';
 import { useQuery } from 'common/hooks/useQuery';
-import { InboxOutlined, UploadOutlined } from '@ant-design/icons';
+import { useMutation } from 'common/hooks/useMutation';
+import { UploadOutlined } from '@ant-design/icons';
+import { convertImageToBase64 } from 'common/lib/base64';
+import { toast } from 'react-toastify';
+import { useRouter } from 'next/router';
 
 const EventForm = () => {
+    const [form] = Form.useForm();
+    const router = useRouter();
+
     const { data } = useQuery('eventType');
+    const [trigger, { isLoading, data: createResData, error }] = useMutation();
 
     const [provinceSelected, setProvinceSelected] = useState(null);
     const [districtSelected, setDistrictSelected] = useState(null);
@@ -16,6 +24,21 @@ const EventForm = () => {
         districtSelected
     );
 
+    useEffect(() => {
+        if (createResData) {
+            toast.success('Create event successfully!');
+            setTimeout(() => {
+                router.push('/');
+            }, 500);
+        }
+    }, [createResData]);
+
+    useEffect(() => {
+        if (error) {
+            toast.error('Create event failed!');
+        }
+    }, [error]);
+
     const normFile = (e) => {
         if (Array.isArray(e)) {
             return e;
@@ -23,13 +46,25 @@ const EventForm = () => {
         return e?.fileList;
     };
 
-    const onFinish = (values) => {
-        console.log(values);
+    const onFinish = async (values) => {
+        const submitObject = {
+            ...values,
+            image: await convertImageToBase64(
+                values?.image?.[0]?.originFileObj
+            ),
+        };
+        trigger('POST', 'events', submitObject);
     };
 
     return (
         <div>
-            <Form layout="vertical" autoComplete="off" onFinish={onFinish}>
+            <Form
+                form={form}
+                layout="vertical"
+                autoComplete="off"
+                onFinish={onFinish}
+                disabled={isLoading}
+            >
                 <Form.Item
                     label="Event name"
                     name="name"
@@ -45,7 +80,7 @@ const EventForm = () => {
                 <Form.Item
                     className="w-40"
                     label="Event type"
-                    name="evenType"
+                    name="evenTypeId"
                     rules={[
                         {
                             required: true,
@@ -65,7 +100,7 @@ const EventForm = () => {
                     <Form.Item
                         className="w-40"
                         label="Province"
-                        name="province"
+                        name="provinceId"
                         rules={[
                             {
                                 required: true,
@@ -79,6 +114,10 @@ const EventForm = () => {
                                     (item) => item._id === value
                                 );
                                 setProvinceSelected(selectedObject?.code);
+                                form.setFieldsValue({
+                                    district: '',
+                                    ward: '',
+                                });
                             }}
                         >
                             {provinces?.map((item) => (
@@ -93,7 +132,7 @@ const EventForm = () => {
                     </Form.Item>
                     <Form.Item
                         label="District"
-                        name="district"
+                        name="districtId"
                         className="w-40"
                         rules={[
                             {
@@ -107,8 +146,10 @@ const EventForm = () => {
                                 const selectedObject = districts?.find(
                                     (item) => item._id === value
                                 );
-                                console.log(selectedObject);
                                 setDistrictSelected(selectedObject?.code);
+                                form.setFieldsValue({
+                                    ward: '',
+                                });
                             }}
                         >
                             {districts?.map((item) => (
@@ -123,7 +164,7 @@ const EventForm = () => {
                     </Form.Item>
                     <Form.Item
                         label="Ward"
-                        name="ward"
+                        name="wardId"
                         className="w-40"
                         rules={[
                             {
@@ -197,7 +238,11 @@ const EventForm = () => {
                     </Upload>
                 </Form.Item>
                 <Form.Item>
-                    <Button type="primary" htmlType="submit">
+                    <Button
+                        type="primary"
+                        htmlType="submit"
+                        loading={isLoading}
+                    >
                         Submit
                     </Button>
                 </Form.Item>

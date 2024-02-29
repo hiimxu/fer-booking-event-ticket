@@ -1,59 +1,62 @@
 import { Button, Table, Space, Tooltip } from 'antd';
 import Link from 'next/link';
 import { PlusOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
-
-const dataSource = [
-    {
-        key: '1',
-        name: 'Mike',
-        age: 32,
-        address: '10 Downing Street',
-    },
-    {
-        key: '2',
-        name: 'John',
-        age: 42,
-        address: '10 Downing Street',
-    },
-];
-
-const columns = [
-    {
-        title: 'Name',
-        dataIndex: 'name',
-        key: 'name',
-    },
-    {
-        title: 'Age',
-        dataIndex: 'age',
-        key: 'age',
-    },
-    {
-        title: 'Address',
-        dataIndex: 'address',
-        key: 'address',
-    },
-    {
-        title: 'Action',
-        key: 'action',
-        render: (_, record) => (
-            <Space size="middle">
-                <Tooltip title="Edit event" color="#108ee9" arrow={false}>
-                    <Button
-                        type="primary"
-                        icon={<EditOutlined />}
-                        shape="circle"
-                    />
-                </Tooltip>
-                <Tooltip title="Delete event" arrow={false} color="red">
-                    <Button danger icon={<DeleteOutlined />} shape="circle" />
-                </Tooltip>
-            </Space>
-        ),
-    },
-];
+import { useQuery } from 'common/hooks/useQuery';
+import { useMemo } from 'react';
+import { getWard, getDistrict, getProvince } from 'common/lib/getAddress';
+import { getType } from 'common/lib/getType';
+import DeleteEvent from '~/components/events/delete-event';
 
 export default function Home() {
+    const { data: listEvent, reload } = useQuery('events');
+    const { data: listType } = useQuery('eventType');
+
+    const dataSource = useMemo(() => {
+        return listEvent?.map((item) => {
+            return {
+                key: item?.id,
+                name: item?.name,
+                evenTypeId: getType(item?.evenTypeId, listType),
+                address: `${item?.address}, ${getWard(item?.wardId)}, ${getDistrict(item?.districtId)}, ${getProvince(item?.provinceId)}`,
+            };
+        });
+    }, [listEvent, listType]);
+
+    const columns = [
+        {
+            title: 'Event name',
+            dataIndex: 'name',
+            key: 'name',
+        },
+        {
+            title: 'Type',
+            dataIndex: 'evenTypeId',
+            key: 'type',
+        },
+        {
+            title: 'Address',
+            dataIndex: 'address',
+            key: 'address',
+        },
+        {
+            title: 'Action',
+            key: 'action',
+            render: (_, record) => (
+                <Space size="middle">
+                    <Tooltip title="Edit event" color="#108ee9" arrow={false}>
+                        <Button
+                            type="primary"
+                            icon={<EditOutlined />}
+                            shape="circle"
+                        />
+                    </Tooltip>
+
+                    <DeleteEvent id={record?.key} successCallback={reload} />
+                </Space>
+            ),
+        },
+    ];
+
     return (
         <main className="p-5 md:p-10">
             <div className="flex items-center justify-between">
@@ -67,7 +70,7 @@ export default function Home() {
                 </div>
             </div>
             <div className="mt-5">
-                <Table dataSource={dataSource} columns={columns} />;
+                <Table dataSource={dataSource} columns={columns} />
             </div>
         </main>
     );

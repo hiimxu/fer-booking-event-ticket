@@ -1,18 +1,27 @@
 {
-    "admin": [
-        {
-            "id": 1,
-            "role": "ADMIN",
-            "name": "admin",
-            "username": "admin",
-            "password": "admin123"
-        }
-    ],
-    "users": [],
-    "events": [],
-    "eventType": [
-        { "id": 1, "name": "Music" },
-        { "id": 2, "name": "Fashion" },
-        { "id": 3, "name": "Festival" }
-    ]
+  "admin": [
+    {
+      "id": "1",
+      "role": "ADMIN",
+      "name": "admin",
+      "username": "admin",
+      "password": "admin123"
+    }
+  ],
+  "users": [],
+  "events": [],
+  "eventType": [
+    {
+      "id": "1",
+      "name": "Music"
+    },
+    {
+      "id": "2",
+      "name": "Fashion"
+    },
+    {
+      "id": "3",
+      "name": "Festival"
+    }
+  ]
 }

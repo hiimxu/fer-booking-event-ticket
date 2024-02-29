@@ -1872,6 +1872,7 @@ __metadata:
     next-transpile-modules: "npm:^10.0.1"
     prettier: "npm:^3.2.5"
     prettier-plugin-tailwindcss: "npm:^0.5.11"
+    react-toastify: "npm:^10.0.4"
     react-usestateref: "npm:^1.0.8"
     tailwind-merge: "npm:^2.2.1"
   languageName: unknown
@@ -5582,6 +5583,18 @@ __metadata:
   version: 18.2.0
   resolution: "react-is@npm:18.2.0"
   checksum: 6eb5e4b28028c23e2bfcf73371e72cd4162e4ac7ab445ddae2afe24e347a37d6dc22fae6e1748632cd43c6d4f9b8f86dcf26bf9275e1874f436d129952528ae0
+  languageName: node
+  linkType: hard
+
+"react-toastify@npm:^10.0.4":
+  version: 10.0.4
+  resolution: "react-toastify@npm:10.0.4"
+  dependencies:
+    clsx: "npm:^2.1.0"
+  peerDependencies:
+    react: ">=16"
+    react-dom: ">=16"
+  checksum: 3d31edf81e8b394fd0085615fd7ba9fb9546c7cdae56e5334df67b58d65450c73af14a8fc163f19ceed03cfee7a344d1af1489422536f52c9516ca45e9b61a37
   languageName: node
   linkType: hard
 
