@@ -20,7 +20,7 @@ const reducer = (state, action) => {
     }
 };
 
-export const useQuery = (endpointURL) => {
+export const useQuery = (endpointURL, skip) => {
     const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
 
     const trigger = async (url) => {
@@ -45,8 +45,24 @@ export const useQuery = (endpointURL) => {
         trigger(endpointURL);
     };
 
+    function hasOneNullValue(obj) {
+        // Check if the object is empty
+        if (Object.keys(obj).length === 0) {
+            return false; // Empty object doesn't have null values
+        }
+
+        // Use some() to check if at least one value is null
+        return Object.values(obj).some((value) => !value);
+    }
+
     useEffect(() => {
-        trigger(endpointURL);
+        if (skip) {
+            if (!hasOneNullValue(skip)) {
+                trigger(endpointURL);
+            }
+        } else {
+            trigger(endpointURL);
+        }
     }, [endpointURL]);
 
     return { ...state, reload };

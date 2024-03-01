@@ -1,12 +1,46 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Container from '~/components/container';
 import EventForm from '~/components/events/event-form';
+import { useMutation } from 'common/hooks/useMutation';
+import { toast } from 'react-toastify';
+import { convertImageToBase64 } from 'common/lib/base64';
+import { useRouter } from 'next/router';
+import { Header } from '~/components/header';
 
 const CreateEvent = () => {
+    const router = useRouter();
+
+    const [trigger, { isLoading, data: createResData, error }] = useMutation();
+
+    useEffect(() => {
+        if (createResData) {
+            toast.success('Create event successfully!');
+            setTimeout(() => {
+                router.push('/');
+            }, 500);
+        }
+    }, [createResData]);
+
+    useEffect(() => {
+        if (error) {
+            toast.error('Create event failed!');
+        }
+    }, [error]);
+
+    const onFinish = async (values) => {
+        const submitObject = {
+            ...values,
+            image: [
+                await convertImageToBase64(values?.image?.[0]?.originFileObj),
+            ],
+        };
+        trigger('POST', 'events', submitObject);
+    };
+
     return (
         <Container>
-            <h2 className="mb-5 text-xl font-semibold">Create event</h2>
-            <EventForm />
+            <Header title="Create event" />
+            <EventForm action={onFinish} isLoading={isLoading} />
         </Container>
     );
 };

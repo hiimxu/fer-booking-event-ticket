@@ -10,10 +10,10 @@ export const decode = (str) => {
     return decodedString;
 };
 
-export const convertImageToBase64 = (image) => {
+export const convertImageToBase64 = (file) => {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
-        reader.readAsDataURL(image);
+        reader.readAsDataURL(file);
         reader.onload = () => resolve(reader.result);
         reader.onerror = (error) => reject(error);
     });

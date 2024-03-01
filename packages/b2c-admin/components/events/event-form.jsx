@@ -2,22 +2,23 @@ import React, { useEffect, useState } from 'react';
 import { Form, Input, Button, Select, Upload } from 'antd';
 import { useVnApi } from 'common/hooks/vn-api';
 import { useQuery } from 'common/hooks/useQuery';
-import { useMutation } from 'common/hooks/useMutation';
-import { UploadOutlined } from '@ant-design/icons';
-import { convertImageToBase64 } from 'common/lib/base64';
-import { toast } from 'react-toastify';
-import { useRouter } from 'next/router';
 
-const EventForm = () => {
+import { UploadOutlined } from '@ant-design/icons';
+
+import { getProvince, getDistrict } from 'common/lib/getAddress';
+import Image from 'next/image';
+import { convertImageToBase64 } from 'common/lib/base64';
+
+const EventForm = ({ initialValue, action, isLoading }) => {
     const [form] = Form.useForm();
-    const router = useRouter();
 
     const { data } = useQuery('eventType');
-    const [trigger, { isLoading, data: createResData, error }] = useMutation();
 
-    const [provinceSelected, setProvinceSelected] = useState(null);
-    const [districtSelected, setDistrictSelected] = useState(null);
-    const [listImage, setListImage] = useState([]);
+    const [provinceSelected, setProvinceSelected] = useState();
+    const [districtSelected, setDistrictSelected] = useState();
+    const [image, setImage] = useState();
+
+    console.log(image);
 
     const { provinces, districts, wards } = useVnApi(
         provinceSelected,
@@ -25,19 +26,13 @@ const EventForm = () => {
     );
 
     useEffect(() => {
-        if (createResData) {
-            toast.success('Create event successfully!');
-            setTimeout(() => {
-                router.push('/');
-            }, 500);
+        if (initialValue) {
+            form.setFieldsValue(initialValue);
+            setProvinceSelected(getProvince(initialValue?.provinceId)?.code);
+            setDistrictSelected(getDistrict(initialValue?.districtId)?.code);
+            setImage(initialValue?.image);
         }
-    }, [createResData]);
-
-    useEffect(() => {
-        if (error) {
-            toast.error('Create event failed!');
-        }
-    }, [error]);
+    }, [initialValue, form]);
 
     const normFile = (e) => {
         if (Array.isArray(e)) {
@@ -46,23 +41,13 @@ const EventForm = () => {
         return e?.fileList;
     };
 
-    const onFinish = async (values) => {
-        const submitObject = {
-            ...values,
-            image: await convertImageToBase64(
-                values?.image?.[0]?.originFileObj
-            ),
-        };
-        trigger('POST', 'events', submitObject);
-    };
-
     return (
         <div>
             <Form
                 form={form}
                 layout="vertical"
                 autoComplete="off"
-                onFinish={onFinish}
+                onFinish={action}
                 disabled={isLoading}
             >
                 <Form.Item
@@ -210,33 +195,55 @@ const EventForm = () => {
                     <Input.TextArea rows={5} />
                 </Form.Item>
 
-                <Form.Item
-                    name="image"
-                    label="Image"
-                    valuePropName="fileList"
-                    getValueFromEvent={normFile}
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Please input banner image!',
-                        },
-                    ]}
-                >
-                    <Upload
-                        name="logo"
-                        listType="picture"
-                        onChange={(e) => {
-                            setListImage(e?.fileList);
-                        }}
+                <div className="flex gap-8">
+                    <Form.Item
+                        name="image"
+                        label="Image"
+                        valuePropName="fileList"
+                        getValueFromEvent={normFile}
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please input banner image!',
+                            },
+                        ]}
                     >
-                        <Button
-                            icon={<UploadOutlined />}
-                            disabled={listImage?.length > 0 ? true : false}
+                        <Upload
+                            name="logo"
+                            onChange={async (e) => {
+                                setImage(
+                                    e?.fileList?.[0]?.originFileObj
+                                        ? [
+                                              await convertImageToBase64(
+                                                  e?.fileList?.[0]
+                                                      ?.originFileObj
+                                              ),
+                                          ]
+                                        : null
+                                );
+                            }}
                         >
-                            Click to upload
-                        </Button>
-                    </Upload>
-                </Form.Item>
+                            <Button
+                                icon={<UploadOutlined />}
+                                disabled={image ? true : false}
+                            >
+                                Click to upload
+                            </Button>
+                        </Upload>
+                    </Form.Item>
+                    <div>
+                        {image?.[0] && (
+                            <Image
+                                className="rounded-lg"
+                                src={image?.[0]}
+                                width={240}
+                                height={240}
+                                alt=""
+                            />
+                        )}
+                    </div>
+                </div>
+
                 <Form.Item>
                     <Button
                         type="primary"
