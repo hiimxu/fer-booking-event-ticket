@@ -25,13 +25,10 @@ function getItem(label, key, icon, children, type) {
 }
 
 const items = [
-    getItem(
-        'Events',
-        '/',
-        <Link href={'/'}>
-            <CalendarOutlined />
-        </Link>
-    ),
+    getItem('Events', '1', <CalendarOutlined />, [
+        getItem(<Link href={'/'}>Manage events</Link>, '/'),
+        getItem(<Link href={'/events/event-types'}>Event types</Link>, '/'),
+    ]),
     getItem(
         'Tickets',
         '/tickets',

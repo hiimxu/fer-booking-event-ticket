@@ -1867,6 +1867,7 @@ __metadata:
     babel-plugin-import: "npm:^1.13.8"
     clsx: "npm:^2.1.0"
     create-next-app-ts: "npm:^0.0.3"
+    dayjs: "npm:^1.11.10"
     json-server: "npm:^1.0.0-alpha.23"
     next-plugin-antd-less: "npm:^1.8.0"
     next-transpile-modules: "npm:^10.0.1"

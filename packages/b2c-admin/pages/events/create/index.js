@@ -28,10 +28,21 @@ const CreateEvent = () => {
     }, [error]);
 
     const onFinish = async (values) => {
+        console.log({
+            ...values,
+            eventTime: [
+                values?.eventTime?.[0]?.format('YYYY-MM-DD HH:mm'),
+                values?.eventTime?.[1]?.format('YYYY-MM-DD HH:mm'),
+            ],
+        });
         const submitObject = {
             ...values,
             image: [
                 await convertImageToBase64(values?.image?.[0]?.originFileObj),
+            ],
+            eventTime: [
+                values?.eventTime?.[0]?.format('YYYY-MM-DD HH:mm'),
+                values?.eventTime?.[1]?.format('YYYY-MM-DD HH:mm'),
             ],
         };
         trigger('POST', 'events', submitObject);

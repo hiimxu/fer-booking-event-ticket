@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { Form, Input, Button, Select, Upload } from 'antd';
+import { Form, Input, Button, Select, Upload, DatePicker } from 'antd';
 import { useVnApi } from 'common/hooks/vn-api';
 import { useQuery } from 'common/hooks/useQuery';
 
 import { UploadOutlined } from '@ant-design/icons';
-
 import { getProvince, getDistrict } from 'common/lib/getAddress';
 import Image from 'next/image';
 import { convertImageToBase64 } from 'common/lib/base64';
+import dayjs from 'dayjs';
+
+const { RangePicker } = DatePicker;
 
 const EventForm = ({ initialValue, action, isLoading }) => {
     const [form] = Form.useForm();
@@ -18,8 +20,6 @@ const EventForm = ({ initialValue, action, isLoading }) => {
     const [districtSelected, setDistrictSelected] = useState();
     const [image, setImage] = useState();
 
-    console.log(image);
-
     const { provinces, districts, wards } = useVnApi(
         provinceSelected,
         districtSelected
@@ -27,12 +27,15 @@ const EventForm = ({ initialValue, action, isLoading }) => {
 
     useEffect(() => {
         if (initialValue) {
-            form.setFieldsValue(initialValue);
+            form.setFieldsValue({
+                ...initialValue,
+                eventTime: initialValue?.eventTime?.map((item) => dayjs(item)),
+            });
             setProvinceSelected(getProvince(initialValue?.provinceId)?.code);
             setDistrictSelected(getDistrict(initialValue?.districtId)?.code);
             setImage(initialValue?.image);
         }
-    }, [initialValue, form]);
+    }, [initialValue]);
 
     const normFile = (e) => {
         if (Array.isArray(e)) {
@@ -62,25 +65,40 @@ const EventForm = ({ initialValue, action, isLoading }) => {
                 >
                     <Input />
                 </Form.Item>
-                <Form.Item
-                    className="w-40"
-                    label="Event type"
-                    name="evenTypeId"
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Please input event type!',
-                        },
-                    ]}
-                >
-                    <Select>
-                        {data?.map((item) => (
-                            <Select.Option key={item?.id} value={item?.id}>
-                                {item?.name}
-                            </Select.Option>
-                        ))}
-                    </Select>
-                </Form.Item>
+                <div className="flex gap-5">
+                    <Form.Item
+                        className="w-40"
+                        label="Event type"
+                        name="eventTypeId"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please input event type!',
+                            },
+                        ]}
+                    >
+                        <Select>
+                            {data?.map((item) => (
+                                <Select.Option key={item?.id} value={item?.id}>
+                                    {item?.name}
+                                </Select.Option>
+                            ))}
+                        </Select>
+                    </Form.Item>
+                    <Form.Item
+                        name="eventTime"
+                        label="Event time"
+                        rules={[
+                            {
+                                type: 'array',
+                                required: true,
+                                message: 'Please select event time!',
+                            },
+                        ]}
+                    >
+                        <RangePicker showTime format="YYYY-MM-DD HH:mm" />
+                    </Form.Item>
+                </div>
                 <div className="flex gap-5">
                     <Form.Item
                         className="w-40"
