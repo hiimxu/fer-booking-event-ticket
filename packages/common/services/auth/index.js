@@ -1,5 +1,5 @@
-import bcrypt from 'bcrypt';
-
+import bcrypt from 'bcryptjs';
+import * as request from '../../lib/httpRequest';
 export const getListAdmin = async () => {
     try {
         const response = await request.get('admin');
@@ -12,17 +12,14 @@ export const getListAdmin = async () => {
 export const loginAdmin = async (auth) => {
     let user;
     const response = await request.get(`admin?username=${auth.username}`);
-    if (response.data.length > 0) {
-        user = response[0];
+    if (response?.data.length > 0) {
+        user = response?.data?.[0];
     }
-
     if (!user) {
         return null;
     }
-    if (
-        user 
-    ) {
+    const sign = await bcrypt.compare(auth?.password, user?.password);
+    if (sign) {
         return user;
     }
-    return user;
 };

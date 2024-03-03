@@ -16,13 +16,5 @@ module.exports = {
             },
             '@ant-design/icons',
         ],
-        [
-            'import',
-            {
-                libraryName: 'bcrypt',
-                libraryDirectory: 'lib',
-            },
-            'bcrypt',
-        ],
     ],
 };
