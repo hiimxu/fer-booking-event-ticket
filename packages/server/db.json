@@ -6,6 +6,13 @@
       "name": "admin",
       "username": "admin",
       "password": "admin123"
+    },
+    {
+      "id": "2",
+      "role": "ADMIN",
+      "name": "admin1",
+      "username": "admin1",
+      "password": "$2y$10$7QoYJ0Ec80aZ94H0fUi0YOS9NBP.At0Ik6fL6tQgrCFUcRdUstI36"
     }
   ],
   "users": [],

@@ -1,8 +1,10 @@
 import { Button, Form, Input } from 'antd';
-import React from 'react';
-
+import React, { useEffect } from 'react';
+import { loginAdmin } from 'common/services/auth';
 const Auth = () => {
-    const onFinish = (values) => {
+    const onFinish = async (values) => {
+        const resDataLogin = await loginAdmin(values);
+        console.log(resDataLogin, 'resDataLogin');
         console.log('Success:', values);
     };
 
