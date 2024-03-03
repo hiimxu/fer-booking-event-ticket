@@ -1,4 +1,5 @@
 import bcrypt from 'bcryptjs';
+import Cookies from 'js-cookie';
 import * as request from '../../lib/httpRequest';
 export const getListAdmin = async () => {
     try {
@@ -20,6 +21,7 @@ export const loginAdmin = async (auth) => {
     }
     const sign = await bcrypt.compare(auth?.password, user?.password);
     if (sign) {
+        Cookies.set('accessToken', JSON.stringify(user), { expires: 7 });
         return user;
     }
 };

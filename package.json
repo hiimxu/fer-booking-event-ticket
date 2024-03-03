@@ -12,6 +12,7 @@
     "clsx": "^2.1.0",
     "create-next-app-ts": "^0.0.3",
     "dayjs": "^1.11.10",
+    "js-cookie": "^3.0.5",
     "json-server": "^1.0.0-alpha.23",
     "next-plugin-antd-less": "^1.8.0",
     "next-transpile-modules": "^10.0.1",

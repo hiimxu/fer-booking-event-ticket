@@ -1,11 +1,18 @@
 import { Button, Form, Input } from 'antd';
 import React, { useEffect } from 'react';
 import { loginAdmin } from 'common/services/auth';
+import { toast } from 'react-toastify';
+import { useRouter } from 'next/router';
 const Auth = () => {
+    const router = useRouter()
     const onFinish = async (values) => {
         const resDataLogin = await loginAdmin(values);
-        console.log(resDataLogin, 'resDataLogin');
-        console.log('Success:', values);
+        if (resDataLogin) {
+            toast.success("Login successfull")
+            router.replace("/")
+        } else {
+             toast.error('Login failed');
+        }
     };
 
     return (
