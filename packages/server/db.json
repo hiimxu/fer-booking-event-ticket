@@ -12,16 +12,34 @@
   "events": [],
   "eventType": [
     {
-      "id": "1",
-      "name": "Music"
+      "name": "Music Show",
+      "isShow": "1",
+      "id": "65a7"
     },
     {
-      "id": "2",
-      "name": "Fashion"
+      "name": "Fashion Show",
+      "isShow": "1",
+      "id": "15d8"
     },
     {
-      "id": "3",
-      "name": "Festival"
+      "name": "test",
+      "isShow": "0",
+      "id": "5645"
+    },
+    {
+      "name": "test",
+      "isShow": "0",
+      "id": "7bb0"
+    },
+    {
+      "name": "Festival",
+      "isShow": "1",
+      "id": "00d9"
+    },
+    {
+      "name": "Gala",
+      "isShow": "1",
+      "id": "dcb1"
     }
   ]
 }

@@ -1,5 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Form, Input, Button, Select, Upload, DatePicker } from 'antd';
+import {
+    Form,
+    Input,
+    Button,
+    Select,
+    Upload,
+    DatePicker,
+    InputNumber,
+} from 'antd';
 import { useVnApi } from 'common/hooks/vn-api';
 import { useQuery } from 'common/hooks/useQuery';
 
@@ -14,7 +22,7 @@ const { RangePicker } = DatePicker;
 const EventForm = ({ initialValue, action, isLoading }) => {
     const [form] = Form.useForm();
 
-    const { data } = useQuery('eventType');
+    const { data } = useQuery('eventType?isShow=1');
 
     const [provinceSelected, setProvinceSelected] = useState();
     const [districtSelected, setDistrictSelected] = useState();
@@ -189,8 +197,8 @@ const EventForm = ({ initialValue, action, isLoading }) => {
                     </Form.Item>
                 </div>
                 <Form.Item
-                    label="Specific address"
-                    name="address"
+                    label="Street"
+                    name="street"
                     rules={[
                         {
                             required: true,
@@ -200,6 +208,35 @@ const EventForm = ({ initialValue, action, isLoading }) => {
                 >
                     <Input />
                 </Form.Item>
+
+                <div className="flex gap-5">
+                    <Form.Item
+                        label="Normal tickets quantity"
+                        name="normalTicket"
+                        rules={[
+                            {
+                                required: true,
+                                message:
+                                    'Please input normal tickets quantity!',
+                            },
+                        ]}
+                    >
+                        <InputNumber className="w-full" min="0" />
+                    </Form.Item>
+                    <Form.Item
+                        label="V.I.P tickets quantity"
+                        name="vipTicket"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please input V.I.P tickets quantity!',
+                            },
+                        ]}
+                    >
+                        <InputNumber className="w-full" min="0" />
+                    </Form.Item>
+                </div>
+
                 <Form.Item
                     label="Description"
                     name="description"
