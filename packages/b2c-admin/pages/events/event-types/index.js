@@ -8,13 +8,6 @@ import EventTypeForm from '~/components/events/event-type-form';
 const EventType = () => {
     const { isLoading, data, reload } = useQuery('eventType');
 
-    const dataSource = useMemo(() => {
-        return data?.map((item) => ({
-            ...item,
-            isShow: item?.isShow === '1' ? 'Show' : 'Hide',
-        }));
-    }, [data]);
-
     const columns = [
         {
             title: 'ID',
@@ -32,8 +25,8 @@ const EventType = () => {
             key: 'isShow',
             render: (_, { isShow }) => (
                 <>
-                    <Tag color={isShow === '1' ? 'green' : 'blue'}>
-                        {isShow.toUpperCase()}
+                    <Tag color={isShow === '1' ? 'green' : 'red'}>
+                        {isShow === '1' ? 'SHOW' : 'HIDE'}
                     </Tag>
                 </>
             ),

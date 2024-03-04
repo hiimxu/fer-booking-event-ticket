@@ -39,28 +39,28 @@ const items = [
     getItem(
         'Booking',
         '/booking',
-        <Link href={'/'}>
+        <Link href={'/booking'}>
             <CheckSquareOutlined />
         </Link>
     ),
     getItem(
         'Users',
         '/users',
-        <Link href={'/'}>
+        <Link href={'/users'}>
             <UserOutlined />
         </Link>
     ),
     getItem(
         'Reporting and Analysis',
         '/report',
-        <Link href={'/'}>
+        <Link href={'/report'}>
             <AreaChartOutlined />
         </Link>
     ),
     getItem(
         'Promotion ',
         '/promotion',
-        <Link href={'/'}>
+        <Link href={'/promotion'}>
             <SolutionOutlined />
         </Link>
     ),

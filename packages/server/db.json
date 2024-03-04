@@ -1,52 +1,52 @@
 {
-  "admin": [
-    {
-      "id": "1",
-      "role": "ADMIN",
-      "name": "admin",
-      "username": "admin",
-      "password": "admin123"
-    },
-    {
-      "id": "2",
-      "role": "ADMIN",
-      "name": "admin1",
-      "username": "admin1",
-      "password": "$2y$10$7QoYJ0Ec80aZ94H0fUi0YOS9NBP.At0Ik6fL6tQgrCFUcRdUstI36"
-    }
-  ],
-  "users": [],
-  "events": [],
-  "eventType": [
-    {
-      "name": "Music Show",
-      "isShow": "1",
-      "id": "65a7"
-    },
-    {
-      "name": "Fashion Show",
-      "isShow": "1",
-      "id": "15d8"
-    },
-    {
-      "name": "test",
-      "isShow": "0",
-      "id": "5645"
-    },
-    {
-      "name": "test",
-      "isShow": "0",
-      "id": "7bb0"
-    },
-    {
-      "name": "Festival",
-      "isShow": "1",
-      "id": "00d9"
-    },
-    {
-      "name": "Gala",
-      "isShow": "1",
-      "id": "dcb1"
-    }
-  ]
+    "admin": [
+        {
+            "id": "1",
+            "role": "ADMIN",
+            "name": "admin",
+            "username": "admin",
+            "password": "$2a$10$GySyZbIJu509fv4SX4WK1O6fqnFpDDFxUV62yQnSlCodVzcnpwG/u"
+        },
+        {
+            "id": "2",
+            "role": "ADMIN",
+            "name": "admin1",
+            "username": "admin1",
+            "password": "$2y$10$7QoYJ0Ec80aZ94H0fUi0YOS9NBP.At0Ik6fL6tQgrCFUcRdUstI36"
+        }
+    ],
+    "users": [],
+    "events": [],
+    "eventType": [
+        {
+            "name": "Music Show",
+            "isShow": "1",
+            "id": "65a7"
+        },
+        {
+            "name": "Fashion Show",
+            "isShow": "1",
+            "id": "15d8"
+        },
+        {
+            "name": "test",
+            "isShow": "0",
+            "id": "5645"
+        },
+        {
+            "name": "test",
+            "isShow": "0",
+            "id": "7bb0"
+        },
+        {
+            "name": "Festival",
+            "isShow": "1",
+            "id": "00d9"
+        },
+        {
+            "name": "Gala",
+            "isShow": "1",
+            "id": "dcb1"
+        }
+    ]
 }
