@@ -1,11 +1,27 @@
-import Image from 'next/image';
+import Container from '~/components/container';
+import { cn } from 'common/lib/utils';
+import { ListingCard } from '~/components/listings/listing-card';
+import { useQuery } from 'common/hooks/useQuery';
 
 export default function Home() {
+    const { data } = useQuery('events');
+
     return (
-        <main
-            className={`flex min-h-screen flex-col items-center justify-between p-24`}
-        >
-            Client
-        </main>
+        <Container>
+            <div
+                className={cn(
+                    'grid grid-cols-1 gap-8 pt-24',
+                    'sm:grid-cols-2',
+                    'md:grid-cols-3',
+                    'lg:grid-cols-4',
+                    'xl:grid-cols-5',
+                    '2xl:grid-cols-6'
+                )}
+            >
+                {data?.map((item) => (
+                    <ListingCard key={item?.id} data={item} />
+                ))}
+            </div>
+        </Container>
     );
 }

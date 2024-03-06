@@ -46,6 +46,7 @@ const EditEvent = () => {
                           ),
                       ],
         };
+        console.log(submitObject);
         trigger('PUT', `events/${query?.id}`, submitObject);
     };
 

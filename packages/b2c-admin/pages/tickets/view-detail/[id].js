@@ -1,6 +1,6 @@
 import { Button, Table, Space, Tooltip, Spin } from 'antd';
 import Link from 'next/link';
-import { EditOutlined, RollbackOutlined } from '@ant-design/icons';
+import { LeftOutlined } from '@ant-design/icons';
 import { useMemo } from 'react';
 import Container from '~/components/container';
 import { useRouter } from 'next/router';
@@ -69,11 +69,9 @@ const Tickets = () => {
     return (
         <Spin spinning={ticketLoading}>
             <Container>
-                <div>
+                <div className="mb-2">
                     <Link href="/tickets">
-                        <Button type="primary" icon={<RollbackOutlined />}>
-                            Back
-                        </Button>
+                        <Button icon={<LeftOutlined />}>Back</Button>
                     </Link>
                 </div>
 

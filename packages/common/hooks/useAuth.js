@@ -11,7 +11,7 @@ export const useAuth = (site) => {
         if (authCookies) {
             setAuth(JSON.parse(authCookies));
         }
-    }, []);
+    }, [site]);
 
     return auth;
 };
