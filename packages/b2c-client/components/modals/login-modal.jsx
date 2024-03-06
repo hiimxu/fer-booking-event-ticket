@@ -40,7 +40,7 @@ const LoginModal = () => {
                     );
                     if (isCorrectPassword) {
                         Cookies.set(
-                            'accessToken',
+                            'accessTokenClient',
                             JSON.stringify(data?.data?.[0]),
                             {
                                 expires: 7,

@@ -1,11 +1,13 @@
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
 
-export const useAuth = () => {
+export const useAuth = (site) => {
     const [auth, setAuth] = useState();
 
     useEffect(() => {
-        const authCookies = Cookies.get('accessToken');
+        const authCookies = Cookies.get(
+            site === 'client' ? 'accessTokenClient' : 'accessToken'
+        );
         if (authCookies) {
             setAuth(JSON.parse(authCookies));
         }

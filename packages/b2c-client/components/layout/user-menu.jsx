@@ -16,7 +16,7 @@ const UserMenu = () => {
     const { onOpen: onOpenRegisterModal } = useRegisterModal();
     const { onOpen: onOpenLoginModal } = useLoginModal();
 
-    const currentUser = useAuth();
+    const currentUser = useAuth('client');
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -39,7 +39,7 @@ const UserMenu = () => {
     }, []);
 
     const signOut = () => {
-        Cookies.remove('accessToken');
+        Cookies.remove('accessTokenClient');
         setTimeout(() => {
             router.reload();
             setIsOpen(false);
