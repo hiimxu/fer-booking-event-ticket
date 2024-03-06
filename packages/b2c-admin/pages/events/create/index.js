@@ -6,17 +6,17 @@ import { toast } from 'react-toastify';
 import { convertImageToBase64 } from 'common/lib/base64';
 import { useRouter } from 'next/router';
 import { Header } from '~/components/header';
+import TicketForm from '~/components/Ticket/ticket-form';
 
 const CreateEvent = () => {
     const router = useRouter();
-
     const [trigger, { isLoading, data: createResData, error }] = useMutation();
 
     useEffect(() => {
         if (createResData) {
-            toast.success('Create event successfully!');
+            toast.success('Create ticket successfully!');
             setTimeout(() => {
-                router.push('/');
+                router.push(`/tickets/view-detail/${id}`);
             }, 500);
         }
     }, [createResData]);

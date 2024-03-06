@@ -1,68 +1,97 @@
-import React from 'react';
-import { Table, Space, Spin, Tag } from 'antd';
-import Container from '~/components/container';
-import { Header } from '~/components/header';
+import { Button, Table, Space, Tooltip, Spin } from 'antd';
+import Link from 'next/link';
+import { EyeOutlined, FundViewOutlined } from '@ant-design/icons';
 import { useQuery } from 'common/hooks/useQuery';
+import { useMemo } from 'react';
+import { getWard, getDistrict, getProvince } from 'common/lib/getAddress';
+import { getType } from 'common/lib/getType';
+import DeleteEvent from '~/components/events/delete-event';
+import Container from '~/components/container';
 
 const Tickets = () => {
-    const { isLoading, data, reload } = useQuery('eventType');
+    const {
+        data: listEvent,
+        reload,
+        isLoading: eventLoading,
+    } = useQuery('events');
+
+    const { data: listType, isLoading: typeLoading } = useQuery('eventType');
+
+    const dataSource = useMemo(() => {
+        return listEvent?.map((item) => {
+            return {
+                key: item?.id,
+                name: item?.name,
+                eventTypeId: getType(item?.eventTypeId, listType),
+                address: `${item?.street}, ${getWard(item?.wardId)?.name}, ${getDistrict(item?.districtId)?.name}, ${getProvince(item?.provinceId)?.name}`,
+                nTickets: item?.normalTicket,
+                vTickets: item?.vipTicket,
+            };
+        });
+    }, [listEvent, listType]);
 
     const columns = [
         {
-            title: 'ID',
-            dataIndex: 'id',
-            key: 'id',
-        },
-        {
-            title: 'Name',
+            title: 'Event name',
             dataIndex: 'name',
             key: 'name',
         },
         {
-            title: 'Show on select',
-            dataIndex: 'isShow',
-            key: 'isShow',
-            render: (_, { isShow }) => (
-                <>
-                    <Tag color={isShow === '1' ? 'green' : 'red'}>
-                        {isShow === '1' ? 'SHOW' : 'HIDE'}
-                    </Tag>
-                </>
-            ),
+            title: 'Type',
+            dataIndex: 'eventTypeId',
+            key: 'type',
+        },
+        {
+            title: 'Address',
+            dataIndex: 'address',
+            key: 'address',
+        },
+        {
+            title: 'Normal Tickets',
+            dataIndex: 'nTickets',
+            key: 'nTickets',
+        },
+        {
+            title: 'V.I.P Tickets',
+            dataIndex: 'vTickets',
+            key: 'vTickets',
         },
         {
             title: 'Action',
             key: 'action',
             render: (_, record) => (
                 <Space size="middle">
-                    {/* <EventTypeForm
-                        typeId={record?.id}
-                        title="Edit event type"
-                        successCallback={reload}
-                    /> */}
+                    <Tooltip title="Show tickets" color="#108ee9" arrow={false}>
+                        <Link href={`/tickets/view-detail/${record.key}`}>
+                            <Button
+                                type="primary"
+                                icon={<EyeOutlined />}
+                                shape="circle"
+                            />
+                        </Link>
+                    </Tooltip>
                 </Space>
             ),
         },
     ];
+
     return (
-        <Spin spinning={isLoading}>
+        <Spin spinning={eventLoading || typeLoading}>
             <Container>
-                <div className="flex justify-between">
-                    <Header title="Events Type Management" />
-                    {/* <EventTypeForm
-                        successCallback={reload}
-                        label="Create"
-                        title="Create event type"
-                    /> */}
+                <div className="flex items-center justify-between">
+                    <h2 className="text-lg font-semibold">
+                        Tickets Management
+                    </h2>
                 </div>
-                <Table
-                    pagination={{ pageSize: 5 }}
-                    dataSource={data}
-                    columns={columns}
-                />
+                <div className="mt-5">
+                    <Table
+                        pagination={{ pageSize: 5 }}
+                        dataSource={dataSource}
+                        columns={columns}
+                    />
+                </div>
             </Container>
         </Spin>
     );
 };
-
 export default Tickets;
