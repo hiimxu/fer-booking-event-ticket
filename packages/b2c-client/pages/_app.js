@@ -5,6 +5,7 @@ import { Spin } from 'antd';
 import { useRef, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import DefaultLayout from '~/components/layout/default-layout';
+import RegisterModal from '~/components/modals/register-modal';
 
 function defaultLayout(page) {
     return <DefaultLayout>{page}</DefaultLayout>;
@@ -49,6 +50,7 @@ export default function App({ Component, pageProps }) {
     return (
         <Spin spinning={loading}>
             <ToastContainer />
+            <RegisterModal />
             {getLayout(<Component {...pageProps} />)}
         </Spin>
     );
