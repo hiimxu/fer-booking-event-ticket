@@ -35,6 +35,7 @@ const AdminList = () => {
                     <Button>Delete</Button>
                 </Space>
             ),
+            width: '20%',
         },
     ];
 
