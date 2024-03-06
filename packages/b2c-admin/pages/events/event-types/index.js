@@ -30,6 +30,20 @@ const EventType = () => {
                     </Tag>
                 </>
             ),
+            filters: [
+                {
+                    text: 'Show',
+                    value: '1',
+                },
+                {
+                    text: 'Hide',
+                    value: '0',
+                },
+            ],
+            onFilter: (value, record) => {
+                console.log(value, record);
+                return record?.isShow == value;
+            },
         },
         {
             title: 'Action',
