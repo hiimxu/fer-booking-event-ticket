@@ -3,13 +3,20 @@ import Avatar from '../Avatar';
 import { MenuOutlined } from '@ant-design/icons';
 import MenuItem from './menu-item';
 import useRegisterModal from '~/hooks/useRegisterModal';
-
-const currentUser = false;
+import useLoginModal from '~/hooks/useLoginModal';
+import { useAuth } from 'common/hooks/useAuth';
+import Cookies from 'js-cookie';
+import { useRouter } from 'next/router';
 
 const UserMenu = () => {
+    const router = useRouter();
+
     const menuRef = useRef(null);
 
     const { onOpen: onOpenRegisterModal } = useRegisterModal();
+    const { onOpen: onOpenLoginModal } = useLoginModal();
+
+    const currentUser = useAuth();
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -31,6 +38,14 @@ const UserMenu = () => {
         setIsOpen((prev) => !prev);
     }, []);
 
+    const signOut = () => {
+        Cookies.remove('accessToken');
+        setTimeout(() => {
+            router.reload();
+            setIsOpen(false);
+        }, 200);
+    };
+
     return (
         <div className="relative" ref={menuRef}>
             <div className="flex items-center gap-3">
@@ -49,14 +64,17 @@ const UserMenu = () => {
                     <div className="flex cursor-pointer flex-col">
                         {currentUser ? (
                             <>
-                                <MenuItem
-                                    label="Logout"
-                                    onClick={() => signOut()}
-                                />
+                                <MenuItem label="Logout" onClick={signOut} />
                             </>
                         ) : (
                             <>
-                                <MenuItem label="Login" onClick={() => {}} />
+                                <MenuItem
+                                    label="Login"
+                                    onClick={() => {
+                                        onOpenLoginModal();
+                                        setIsOpen(false);
+                                    }}
+                                />
                                 <MenuItem
                                     label="Sign up"
                                     onClick={() => {

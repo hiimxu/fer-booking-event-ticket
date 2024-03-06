@@ -1,0 +1,15 @@
+{
+  "admin": [],
+  "users": [
+    {
+      "id": "293b",
+      "name": "test",
+      "email": "test@gmail.com",
+      "phone": "0912345678",
+      "username": "test",
+      "password": "$2a$10$24ALY1Zt7VaegX.z4vmhaOFwb6.xa0yTWbl161NCFl4HsDsP8Itwq"
+    }
+  ],
+  "events": [],
+  "eventType": []
+}

@@ -8,6 +8,7 @@ import * as request from 'common/lib/httpRequest';
 import { toast } from 'react-toastify';
 import bcrypt from 'bcryptjs';
 import { SALT } from 'common/constant/constant';
+import useLoginModal from '~/hooks/useLoginModal';
 
 const RegisterModal = () => {
     const [trigger, { isLoading, data }] = useMutation();
@@ -15,6 +16,7 @@ const RegisterModal = () => {
     const formRef = useRef(null);
 
     const { isOpen, onClose } = useRegisterModal();
+    const { onOpen } = useLoginModal();
 
     const [loading, setLoading] = useState(false);
 
@@ -27,7 +29,8 @@ const RegisterModal = () => {
 
     const toggle = useCallback(() => {
         onClose();
-    }, [onClose]);
+        onOpen();
+    }, [onClose, onOpen]);
 
     const onFinish = (values) => {
         const submitObj = {

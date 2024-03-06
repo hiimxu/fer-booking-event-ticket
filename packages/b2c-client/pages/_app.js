@@ -6,6 +6,7 @@ import { useRef, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import DefaultLayout from '~/components/layout/default-layout';
 import RegisterModal from '~/components/modals/register-modal';
+import LoginModal from '~/components/modals/login-modal';
 
 function defaultLayout(page) {
     return <DefaultLayout>{page}</DefaultLayout>;
@@ -51,6 +52,7 @@ export default function App({ Component, pageProps }) {
         <Spin spinning={loading}>
             <ToastContainer />
             <RegisterModal />
+            <LoginModal />
             {getLayout(<Component {...pageProps} />)}
         </Spin>
     );

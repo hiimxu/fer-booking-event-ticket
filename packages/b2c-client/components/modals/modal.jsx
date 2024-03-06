@@ -34,10 +34,6 @@ const Modal = ({
     useEffect(() => {
         if (showModal) {
             disableScroll();
-        } else {
-            setTimeout(() => {
-                enableScroll();
-            }, 200);
         }
     }, [showModal]);
 
@@ -52,7 +48,8 @@ const Modal = ({
         setShowModal(false);
         setTimeout(() => {
             onClose();
-        }, 300);
+            enableScroll();
+        }, 200);
     }, [disabled, onClose]);
 
     const handleSubmit = useCallback(() => {
