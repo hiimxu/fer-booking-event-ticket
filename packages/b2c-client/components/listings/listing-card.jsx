@@ -60,11 +60,19 @@ export const ListingCard = ({ data }) => {
                             </div>
                         )}
                     </div>
-                    <div className="text-lg font-semibold">
+                    <div className="flex items-baseline gap-1">
+                        <div className="text-lg font-semibold">
+                            {data?.name}
+                        </div>
+                        <div className="font-light text-neutral-500">-</div>
+                        <div className="font-light text-neutral-500">
+                            {type?.[0]?.name}
+                        </div>
+                    </div>
+                    <div>
                         {address?.street}, {address?.ward}, {address?.district},{' '}
                         {address?.province}
                     </div>
-
                     <div className="font-light text-neutral-500">
                         <p>
                             From:{' '}
@@ -78,9 +86,6 @@ export const ListingCard = ({ data }) => {
                                 'HH:mm DD-MMM-YYYY'
                             )}
                         </p>
-                    </div>
-                    <div className="font-light text-neutral-500">
-                        {type?.[0]?.name}
                     </div>
                 </div>
             </div>

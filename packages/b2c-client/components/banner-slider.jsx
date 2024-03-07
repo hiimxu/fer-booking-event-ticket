@@ -21,6 +21,10 @@ const Slider = () => {
 
     const [currentSlide, setCurrentSlide] = useState();
 
+    if (data?.length === 0) {
+        return null;
+    }
+
     return (
         <Spin spinning={isLoading}>
             <div className="relative">
