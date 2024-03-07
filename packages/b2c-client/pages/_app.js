@@ -1,5 +1,7 @@
 import '~/styles/globals.css';
 import 'react-toastify/dist/ReactToastify.css';
+import 'swiper/css';
+import 'swiper/css/navigation';
 import { ToastContainer } from 'react-toastify';
 import { Spin } from 'antd';
 import { useRef, useEffect, useState } from 'react';
