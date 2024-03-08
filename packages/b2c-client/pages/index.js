@@ -13,7 +13,7 @@ export default function Home() {
             <Container>
                 <div
                     className={cn(
-                        'grid grid-cols-1 gap-8 pt-24',
+                        'grid grid-cols-1 gap-8 py-24',
                         'sm:grid-cols-2',
                         'md:grid-cols-3',
                         'lg:grid-cols-4',

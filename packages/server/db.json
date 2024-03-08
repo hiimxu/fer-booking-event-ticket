@@ -63,5 +63,25 @@
             "name": "Music Show",
             "isShow": "1"
         }
+    ],
+    "eventTikets": [
+        {
+            "name": "Vip A",
+            "type": 0,
+            "quantity": 99,
+            "area": "A",
+            "price": 10000,
+            "event_id": "b6b4",
+            "id": "1ccoc"
+        },
+        {
+            "id": "d70e",
+            "name": "Nomal",
+            "type": 1,
+            "quantity": 800,
+            "area": "B",
+            "price": 230000,
+            "event_id": "b6b4"
+        }
     ]
 }

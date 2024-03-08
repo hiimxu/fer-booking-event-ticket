@@ -15,9 +15,12 @@ export const ListingCard = ({ data }) => {
 
     const { onOpen } = useLoginModal();
 
-    const { data: type, isLoading } = useQuery('eventType', {
-        id: data?.eventTypeId,
-    });
+    const { data: type, isLoading } = useQuery(
+        `eventType?id=${data?.eventTypeId}`,
+        {
+            id: data?.eventTypeId,
+        }
+    );
 
     const address = useMemo(() => {
         return {
@@ -77,13 +80,13 @@ export const ListingCard = ({ data }) => {
                         <p>
                             From:{' '}
                             {dayjs(data?.eventTime?.[0]).format(
-                                'HH:mm DD-MMM-YYYY'
+                                'HH:mm MMM DD YYYY'
                             )}
                         </p>
                         <p>
                             To:{' '}
                             {dayjs(data?.eventTime?.[1]).format(
-                                'HH:mm DD-MMM-YYYY'
+                                'HH:mm MMM DD YYYY'
                             )}
                         </p>
                     </div>

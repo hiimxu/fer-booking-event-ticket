@@ -75,7 +75,7 @@ const Search = () => {
     return (
         <div className="relative" ref={searchRef}>
             <div
-                className="flex rounded-full border px-4 py-1.5"
+                className="flex rounded-full border px-4 py-1.5 text-slate-500"
                 onClick={() => {
                     searchInputRef.current?.focus();
                 }}
