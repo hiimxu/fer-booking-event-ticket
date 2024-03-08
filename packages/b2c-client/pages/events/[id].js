@@ -45,7 +45,7 @@ const EventDetail = () => {
             <main className="py-24">
                 <Container>
                     <div className="flex gap-8 border-b pb-16">
-                        <div>
+                        <div className="min-w-[20%]">
                             <Image
                                 className="rounded-xl object-cover"
                                 src={event?.image?.[0]}

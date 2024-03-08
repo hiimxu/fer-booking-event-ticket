@@ -61,8 +61,8 @@ const Slider = () => {
                             }}
                         >
                             <div className="relative">
-                                <div className="l absolute left-0 h-[400px] w-full bg-rose-500 xl:h-[540px]" />
-                                <div className="absolute left-36 top-36 z-10 w-[450px] text-center text-5xl font-bold uppercase text-white">
+                                <div className="l absolute left-0 h-[400px] w-full bg-rose-600 xl:h-[540px]" />
+                                <div className="absolute left-36 top-36 z-10 w-[500px] text-center text-5xl font-bold uppercase text-white">
                                     {item?.title}
                                 </div>
                                 <Image
