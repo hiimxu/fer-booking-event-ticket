@@ -5,9 +5,15 @@ import dayjs from 'dayjs';
 import { CalendarFilled } from '@ant-design/icons';
 import { useQuery } from 'common/hooks/useQuery';
 import { useRouter } from 'next/router';
+import { useAuth } from 'common/hooks/useAuth';
+import useLoginModal from '~/hooks/useLoginModal';
 
 const RecommendCard = ({ data }) => {
     const router = useRouter();
+
+    const auth = useAuth('client');
+
+    const { onOpen } = useLoginModal();
 
     const { data: type } = useQuery(`eventType?id=${data?.eventTypeId}`, {
         id: data?.eventTypeId,
@@ -30,7 +36,13 @@ const RecommendCard = ({ data }) => {
         <div>
             <div
                 className="group relative h-[420px] w-[384px] cursor-pointer rounded-xl"
-                onClick={() => router.push(`events/${data?.id}`)}
+                onClick={() => {
+                    if (!auth) {
+                        onOpen();
+                    } else {
+                        router.push(`events/${data?.id}`);
+                    }
+                }}
             >
                 <Image
                     className="rounded-xl object-cover transition group-hover:scale-110"
