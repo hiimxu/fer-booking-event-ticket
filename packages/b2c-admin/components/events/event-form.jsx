@@ -7,6 +7,7 @@ import {
     Upload,
     DatePicker,
     InputNumber,
+    Checkbox,
 } from 'antd';
 import { useVnApi } from 'common/hooks/vn-api';
 import { useQuery } from 'common/hooks/useQuery';
@@ -72,6 +73,9 @@ const EventForm = ({ initialValue, action, isLoading }) => {
                     ]}
                 >
                     <Input />
+                </Form.Item>
+                <Form.Item name="bigEvent" valuePropName="checked">
+                    <Checkbox>This is hot event.</Checkbox>
                 </Form.Item>
                 <div className="flex gap-5">
                     <Form.Item

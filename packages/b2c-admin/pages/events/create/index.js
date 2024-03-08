@@ -14,10 +14,10 @@ const CreateEvent = () => {
 
     useEffect(() => {
         if (createResData) {
-            toast.success('Create ticket successfully!');
+            toast.success('Create event successfully!');
             setTimeout(() => {
-                router.push(`/tickets/view-detail/${id}`);
-            }, 500);
+                router.push(`/`);
+            }, 200);
         }
     }, [createResData]);
 
@@ -28,13 +28,6 @@ const CreateEvent = () => {
     }, [error]);
 
     const onFinish = async (values) => {
-        console.log({
-            ...values,
-            eventTime: [
-                values?.eventTime?.[0]?.format('YYYY-MM-DD HH:mm'),
-                values?.eventTime?.[1]?.format('YYYY-MM-DD HH:mm'),
-            ],
-        });
         const submitObject = {
             ...values,
             image: [
@@ -44,7 +37,9 @@ const CreateEvent = () => {
                 values?.eventTime?.[0]?.format('YYYY-MM-DD HH:mm'),
                 values?.eventTime?.[1]?.format('YYYY-MM-DD HH:mm'),
             ],
+            bigEvent: values?.bigEvent ? true : false,
         };
+
         trigger('POST', 'events', submitObject);
     };
 
