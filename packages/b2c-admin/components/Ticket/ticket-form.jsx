@@ -1,9 +1,19 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Button, Modal, Form, Input, Spin, Radio, InputNumber } from 'antd';
+import {
+    Button,
+    Modal,
+    Form,
+    Input,
+    Spin,
+    Radio,
+    InputNumber,
+    Select,
+} from 'antd';
 import { PlusOutlined, EditOutlined } from '@ant-design/icons';
 import { useMutation } from 'common/hooks/useMutation';
 import { toast } from 'react-toastify';
 import { useQuery } from 'common/hooks/useQuery';
+import { TicketType } from '~/utils/enum';
 
 const TicketForm = ({ event_id, ticketId, successCallback, label, title }) => {
     const formRef = useRef(null);
@@ -13,9 +23,14 @@ const TicketForm = ({ event_id, ticketId, successCallback, label, title }) => {
 
     const {
         isLoading: getLoading,
-        data: eventTypeData,
+        data: eventTicketData,
         reload,
     } = useQuery(`eventTikets/${ticketId}`, { ticketId, isModalOpen });
+    const {
+        isLoading: getLoadingEvent,
+        data: eventData,
+        reload: evnetReload,
+    } = useQuery(`/events/${event_id}`);
     const [trigger, { isLoading, data }] = useMutation();
 
     useEffect(() => {
@@ -25,8 +40,8 @@ const TicketForm = ({ event_id, ticketId, successCallback, label, title }) => {
     }, [isModalOpen]);
 
     useEffect(() => {
-        form.setFieldsValue(eventTypeData);
-    }, [eventTypeData]);
+        form.setFieldsValue(eventTicketData);
+    }, [eventTicketData]);
 
     useEffect(() => {
         if (data) {
@@ -104,6 +119,29 @@ const TicketForm = ({ event_id, ticketId, successCallback, label, title }) => {
                         >
                             <Input />
                         </Form.Item>
+
+                        <Form.Item
+                            className="w-40"
+                            label="Ticket type"
+                            name="type"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Please pick ticket type!',
+                                },
+                            ]}
+                        >
+                            <Select>
+                                {TicketType?.map((item) => (
+                                    <Select.Option
+                                        key={item?.id}
+                                        value={item?.id}
+                                    >
+                                        {item?.name}
+                                    </Select.Option>
+                                ))}
+                            </Select>
+                        </Form.Item>
                         <Form.Item
                             label="Ticket quantity"
                             name="quantity"
@@ -112,23 +150,24 @@ const TicketForm = ({ event_id, ticketId, successCallback, label, title }) => {
                                     required: true,
                                     message: 'Please input ticket quantity!',
                                 },
+                                ({ getFieldValue }) => ({
+                                    validator(rule, value) {
+                                        const numTicket =
+                                            getFieldValue('type') === 0
+                                                ? eventData.vipTicket
+                                                : eventData.normalTicket;
+                                        return numTicket < value
+                                            ? Promise.reject(
+                                                  'Quantity cannot be greater than available tickets: ' +
+                                                      numTicket
+                                              )
+                                            : Promise.resolve();
+                                    },
+                                }),
                             ]}
                         >
                             <InputNumber min={0} className="w-full" />
                         </Form.Item>
-                        <Form.Item
-                            label="Ticket type"
-                            name="type"
-                            rules={[
-                                {
-                                    required: true,
-                                    message: 'Please input ticket type!',
-                                },
-                            ]}
-                        >
-                            <Input />
-                        </Form.Item>
-
                         <Form.Item
                             label="Ticket area"
                             name="area"
@@ -151,7 +190,11 @@ const TicketForm = ({ event_id, ticketId, successCallback, label, title }) => {
                                 },
                             ]}
                         >
-                            <InputNumber min={0} className="w-full" />
+                            <InputNumber
+                                min={0}
+                                className="w-full"
+                                addonAfter="VND"
+                            />
                         </Form.Item>
                         <Form.Item hidden>
                             <Button type="primary" htmlType="submit">
