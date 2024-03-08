@@ -7,7 +7,6 @@ import Container from '~/components/container';
 import { getWard, getDistrict, getProvince } from 'common/lib/getAddress';
 import dayjs from 'dayjs';
 import { CalendarFilled } from '@ant-design/icons';
-import TicketItem from '~/components/tickets/ticket-item';
 import ListTicket from '~/components/tickets/list-ticket';
 
 const EventDetail = () => {
@@ -61,7 +60,7 @@ const EventDetail = () => {
                                 {event?.name}
                             </h3>
                             <p className="text-slate-400">#{type?.[0]?.name}</p>
-                            <div className="flex gap-2  font-medium text-neutral-500">
+                            <div className="flex gap-2 font-medium text-neutral-500">
                                 <CalendarFilled />
                                 <p>
                                     {dayjs(event?.eventTime?.[0]).format(
@@ -86,6 +85,9 @@ const EventDetail = () => {
                                     {address?.street}, {address?.ward},{' '}
                                     {address?.district}, {address?.province}
                                 </p>
+                            </div>
+                            <div className="mt-6 text-slate-500">
+                                {event?.description}
                             </div>
                         </div>
                     </div>

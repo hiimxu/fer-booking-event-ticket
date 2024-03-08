@@ -48,8 +48,8 @@ export const ListingCard = ({ data }) => {
                 }}
                 role="presentation"
             >
-                <div className="flex w-full flex-col gap-2">
-                    <div className="relative aspect-square  w-full overflow-hidden rounded-xl">
+                <div className="flex w-full flex-col gap-1">
+                    <div className="relative aspect-square w-full overflow-hidden rounded-xl">
                         <Image
                             alt="Listing"
                             className="h-full w-full object-cover transition group-hover:scale-110"
@@ -63,14 +63,9 @@ export const ListingCard = ({ data }) => {
                             </div>
                         )}
                     </div>
-                    <div className="flex items-baseline gap-1">
-                        <div className="text-lg font-semibold">
-                            {data?.name}
-                        </div>
-                        <div className="font-light text-neutral-500">-</div>
-                        <div className="font-light text-neutral-500">
-                            {type?.[0]?.name}
-                        </div>
+                    <div className="text-lg font-semibold">{data?.name}</div>
+                    <div className="font-light text-neutral-500">
+                        {type?.[0]?.name}
                     </div>
                     <div>
                         {address?.street}, {address?.ward}, {address?.district},{' '}
