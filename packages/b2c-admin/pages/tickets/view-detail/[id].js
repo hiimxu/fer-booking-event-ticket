@@ -22,6 +22,7 @@ const Tickets = () => {
             return {
                 key: item?.id,
                 name: item?.name,
+                type: item?.type === 0 ? 'Vip' : 'Nomal',
                 quantity: item?.quantity,
                 area: item.area,
                 price: item.price,
@@ -34,6 +35,11 @@ const Tickets = () => {
             title: 'Ticket name',
             dataIndex: 'name',
             key: 'name',
+        },
+        {
+            title: 'Ticket type',
+            dataIndex: 'type',
+            key: 'type',
         },
         {
             title: 'quantity',
