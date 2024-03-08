@@ -15,7 +15,7 @@ const Slider = () => {
 
     const { onOpen } = useLoginModal();
 
-    const { data, isLoading } = useQuery('events');
+    const { data, isLoading } = useQuery('promotions');
 
     const swiperRef = useRef(null);
 
@@ -56,18 +56,18 @@ const Slider = () => {
                                 if (!auth) {
                                     onOpen();
                                 } else {
-                                    router.push(`/events/${item?.id}`);
+                                    router.push(`/events/${item?.eventId}`);
                                 }
                             }}
                         >
                             <div className="relative">
                                 <div className="l absolute left-0 h-[400px] w-full bg-rose-500 xl:h-[540px]" />
                                 <div className="absolute left-36 top-36 z-10 w-[450px] text-center text-5xl font-bold uppercase text-white">
-                                    {item?.name}
+                                    {item?.title}
                                 </div>
                                 <Image
                                     className="absolute right-0 w-[80%] object-cover"
-                                    src={item?.image?.[0]}
+                                    src={item?.thumbnail?.[0]}
                                     width={800}
                                     height={800}
                                     alt=""
