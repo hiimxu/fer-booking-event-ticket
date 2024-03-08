@@ -59,7 +59,7 @@ export const ListingCard = ({ data }) => {
                         />
                         {data?.bigEvent && (
                             <div className="absolute left-3 top-3 rounded-3xl bg-white px-3.5 py-0.5 font-medium opacity-90">
-                                Hot event
+                                Outstanding
                             </div>
                         )}
                     </div>
