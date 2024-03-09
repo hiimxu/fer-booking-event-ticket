@@ -41,7 +41,6 @@ const EventType = () => {
                 },
             ],
             onFilter: (value, record) => {
-                console.log(value, record);
                 return record?.isShow == value;
             },
         },

@@ -9,7 +9,7 @@ export const PAYMENT_ACCOUNT = {
 
 export const TicketType = [
     { id: 0, name: 'Vip' },
-    { id: 1, name: 'Nomal' },
+    { id: 1, name: 'Normal' },
 ];
 
 export const STATUS_BOOKING = ['PENDING', 'APPROVED', 'REJECT'];

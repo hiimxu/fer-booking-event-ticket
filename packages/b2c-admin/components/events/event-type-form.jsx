@@ -52,7 +52,6 @@ const EventTypeForm = ({ typeId, successCallback, label, title }) => {
     };
 
     const onFinish = (values) => {
-        console.log(values);
         if (typeId) {
             trigger('PUT', `eventType/${typeId}`, values);
         } else {

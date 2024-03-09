@@ -54,7 +54,6 @@ const BookingForm = ({ bookingId, successCallback, label, title }) => {
     };
 
     const onFinish = (values) => {
-        console.log(values);
         if (bookingId) {
             trigger('PUT', `booking/${bookingId}`, values);
         }

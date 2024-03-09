@@ -40,8 +40,6 @@ export default function Booking() {
         return [];
     }, [listBooking, listEvent]);
 
-    console.log(dataEventFilter, 'dataEventFilter');
-
     const dataSource = useMemo(() => {
         return listBooking?.map((item) => {
             return {

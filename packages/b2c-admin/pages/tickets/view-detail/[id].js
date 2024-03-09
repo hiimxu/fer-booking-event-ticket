@@ -10,7 +10,6 @@ import TicketForm from '~/components/Ticket/ticket-form';
 const Tickets = () => {
     const { query } = useRouter();
     const { id } = query;
-    // console.log(query, 'router');
     const {
         data: listTicket,
         isLoading: ticketLoading,
@@ -22,7 +21,7 @@ const Tickets = () => {
             return {
                 key: item?.id,
                 name: item?.name,
-                type: item?.type === 0 ? 'Vip' : 'Nomal',
+                type: item?.type === 0 ? 'Vip' : 'Normal',
                 quantity: item?.quantity,
                 area: item.area,
                 price: item.price,

@@ -71,7 +71,6 @@ const TicketForm = ({ event_id, ticketId, successCallback, label, title }) => {
     };
 
     const onFinish = (values) => {
-        console.log(values);
         if (ticketId) {
             trigger('PUT', `eventTikets/${ticketId}`, { ...values, event_id });
         } else {

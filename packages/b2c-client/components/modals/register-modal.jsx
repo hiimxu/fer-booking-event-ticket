@@ -47,7 +47,6 @@ const RegisterModal = () => {
             .then((data) => {
                 if (data?.data?.[0]) {
                     toast.error('Account already exist!');
-                    console.log(data?.[0]);
                 } else {
                     trigger('POST', 'users', submitObj);
                 }

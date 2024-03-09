@@ -46,7 +46,6 @@ const EditPromotion = () => {
                           ),
                       ],
         };
-        console.log(submitObject);
         trigger('PUT', `promotions/${query?.id}`, submitObject);
     };
 

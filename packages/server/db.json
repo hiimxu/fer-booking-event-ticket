@@ -129,7 +129,7 @@
     },
     {
       "id": "d70e",
-      "name": "Nomal",
+      "name": "Normal",
       "type": 1,
       "quantity": 800,
       "area": "B",
@@ -162,6 +162,42 @@
       "area": "B",
       "price": 40000,
       "event_id": "c3b2"
+    },
+    {
+      "id": "a00a",
+      "name": "Demo 123",
+      "type": 0,
+      "quantity": 32,
+      "area": "A",
+      "price": 12000000,
+      "event_id": "3c55"
+    },
+    {
+      "id": "c609",
+      "name": "Normal demo",
+      "type": 1,
+      "quantity": 300,
+      "area": "B",
+      "price": 200000,
+      "event_id": "3c55"
+    },
+    {
+      "id": "d799",
+      "name": "VIp",
+      "type": 0,
+      "quantity": 29,
+      "area": "B",
+      "price": 25000000,
+      "event_id": "9500"
+    },
+    {
+      "id": "30a5",
+      "name": "Normal",
+      "type": 1,
+      "quantity": 50,
+      "area": "A",
+      "price": 100000,
+      "event_id": "9500"
     }
   ],
   "promotions": [
@@ -214,12 +250,60 @@
       "status": "APPROVED"
     },
     {
-      "id": "3164",
+      "event_id": "b6b4",
+      "ticket_id": "1ccoc",
+      "user_id": "293b",
+      "id": "08a7",
+      "createAt": "08/03/2024 19:27:33",
+      "status": "APPROVED"
+    },
+    {
+      "event_id": "b6b4",
+      "ticket_id": "1ccoc",
+      "user_id": "293b",
+      "id": "713d",
+      "createAt": "08/03/2024 21:15:08",
+      "status": "APPROVED"
+    },
+    {
+      "event_id": "b6b4",
+      "ticket_id": "1ccoc",
+      "user_id": "293b",
+      "id": "01a6",
+      "createAt": "07/03/2024 19:27:33",
+      "status": "APPROVED"
+    },
+    {
+      "event_id": "b6b4",
+      "ticket_id": "1ccoc",
+      "user_id": "293b",
+      "id": "763d",
+      "createAt": "07/03/2024 21:15:08",
+      "status": "APPROVED"
+    },
+    {
+      "event_id": "b6b4",
+      "ticket_id": "1ccoc",
+      "user_id": "293b",
+      "id": "08b1",
+      "createAt": "07/03/2024 19:27:33",
+      "status": "APPROVED"
+    },
+    {
+      "event_id": "b6b4",
+      "ticket_id": "1ccoc",
+      "user_id": "293b",
+      "id": "703d",
+      "createAt": "08/03/2024 21:15:08",
+      "status": "APPROVED"
+    },
+    {
       "event_id": "b6b4",
       "ticket_id": "8df3",
       "user_id": "293b",
-      "status": "PENDING",
-      "createAt": "09/03/2024 21:16:11"
+      "id": "3164",
+      "createAt": "09/03/2024 21:16:11",
+      "status": "APPROVED"
     },
     {
       "event_id": "b6b4",
@@ -230,28 +314,140 @@
       "status": "REJECT"
     },
     {
-      "id": "00ab",
       "event_id": "c3b2",
       "ticket_id": "7ad8",
       "user_id": "293b",
-      "status": "PENDING",
-      "createAt": "09/03/2024 22:10:40"
+      "id": "00ab",
+      "createAt": "09/03/2024 22:10:40",
+      "status": "APPROVED"
     },
     {
+      "event_id": "c3b2",
+      "ticket_id": "1adb",
+      "user_id": "293b",
       "id": "528a",
-      "event_id": "c3b2",
-      "ticket_id": "1adb",
-      "user_id": "293b",
-      "status": "PENDING",
-      "createAt": "09/03/2024 22:10:45"
+      "createAt": "09/03/2024 22:10:45",
+      "status": "APPROVED"
     },
     {
-      "id": "3b21",
       "event_id": "c3b2",
       "ticket_id": "1adb",
       "user_id": "293b",
+      "id": "3b21",
+      "createAt": "09/03/2024 22:10:52",
+      "status": "APPROVED"
+    },
+    {
+      "event_id": "b6b4",
+      "ticket_id": "d70e",
+      "user_id": "293b",
+      "id": "cc5e",
+      "createAt": "10/03/2024 02:39:54",
+      "status": "APPROVED"
+    },
+    {
+      "event_id": "b6b4",
+      "ticket_id": "d70e",
+      "user_id": "293b",
+      "id": "5063",
+      "createAt": "10/03/2024 02:40:01",
+      "status": "APPROVED"
+    },
+    {
+      "event_id": "b6b4",
+      "ticket_id": "d70e",
+      "user_id": "293b",
+      "id": "5a21",
+      "createAt": "10/03/2024 02:40:05",
+      "status": "APPROVED"
+    },
+    {
+      "id": "c9f6",
+      "event_id": "b6b4",
+      "ticket_id": "d70e",
+      "user_id": "293b",
       "status": "PENDING",
-      "createAt": "09/03/2024 22:10:52"
+      "createAt": "10/03/2024 02:40:08"
+    },
+    {
+      "event_id": "c3b2",
+      "ticket_id": "1adb",
+      "user_id": "293b",
+      "id": "6f8b",
+      "createAt": "10/03/2024 02:40:19",
+      "status": "APPROVED"
+    },
+    {
+      "event_id": "c3b2",
+      "ticket_id": "1adb",
+      "user_id": "293b",
+      "id": "bb53",
+      "createAt": "10/03/2024 02:40:22",
+      "status": "APPROVED"
+    },
+    {
+      "event_id": "c3b2",
+      "ticket_id": "7ad8",
+      "user_id": "293b",
+      "id": "0065",
+      "createAt": "10/03/2024 02:40:25",
+      "status": "APPROVED"
+    },
+    {
+      "event_id": "c3b2",
+      "ticket_id": "7ad8",
+      "user_id": "293b",
+      "id": "5bd5",
+      "createAt": "10/03/2024 02:40:28",
+      "status": "APPROVED"
+    },
+    {
+      "event_id": "c3b2",
+      "ticket_id": "1adb",
+      "user_id": "293b",
+      "id": "acc2",
+      "createAt": "10/03/2024 02:40:33",
+      "status": "APPROVED"
+    },
+    {
+      "event_id": "9500",
+      "ticket_id": "d799",
+      "user_id": "293b",
+      "id": "06df",
+      "createAt": "10/03/2024 04:00:54",
+      "status": "APPROVED"
+    },
+    {
+      "event_id": "9500",
+      "ticket_id": "d799",
+      "user_id": "293b",
+      "id": "6cfa",
+      "createAt": "10/03/2024 04:00:58",
+      "status": "APPROVED"
+    },
+    {
+      "event_id": "9500",
+      "ticket_id": "30a5",
+      "user_id": "293b",
+      "id": "dcde",
+      "createAt": "10/03/2024 04:01:03",
+      "status": "APPROVED"
+    },
+    {
+      "event_id": "3c55",
+      "ticket_id": "a00a",
+      "user_id": "293b",
+      "id": "5111",
+      "createAt": "10/03/2024 04:20:45",
+      "status": "APPROVED"
+    },
+    {
+      "event_id": "3c55",
+      "ticket_id": "c609",
+      "user_id": "293b",
+      "id": "8f6c",
+      "createAt": "10/03/2024 04:20:50",
+      "status": "APPROVED"
     }
   ]
 }
