@@ -6,7 +6,7 @@ import Container from '~/components/container';
 import { useRouter } from 'next/router';
 import { useQuery } from 'common/hooks/useQuery';
 import TicketForm from '~/components/Ticket/ticket-form';
-
+import { currencyFormatter } from 'common/lib/utils';
 const Tickets = () => {
     const { query } = useRouter();
     const { id } = query;
@@ -24,7 +24,7 @@ const Tickets = () => {
                 type: item?.type === 0 ? 'Vip' : 'Normal',
                 quantity: item?.quantity,
                 area: item.area,
-                price: item.price,
+                price: currencyFormatter(Number(item?.price)),
             };
         });
     }, [listTicket, id]);

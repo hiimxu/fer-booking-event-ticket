@@ -2,6 +2,7 @@ import React, { useMemo, useEffect, useState } from 'react';
 import { Select, Spin } from 'antd';
 import Container from '~/components/container';
 import { useQuery } from 'common/hooks/useQuery';
+import { currencyFormatter } from 'common/lib/utils';
 import {
     Chart as ChartJS,
     ArcElement,
@@ -202,7 +203,7 @@ const Report = () => {
                     </h2>
                 </div>
                 <div className="mt-5 w-full">
-                    <div className="my-4 flex flex-row gap-2">
+                    <div className="my-4 flex flex-row gap-4">
                         <div className="flex w-[15rem] flex-row justify-center gap-2 rounded-md bg-[#f8f8f8] px-4 py-8">
                             <ShoppingOutlined className="h-max w-max rounded-[50%] bg-[#D6FFD2] p-2 text-[2rem] text-[#2F8324]" />
                             <div className="w-max">
@@ -225,12 +226,12 @@ const Report = () => {
                                 </h3>
                             </div>
                         </div>
-                        <div className="flex w-[15rem] flex-row justify-center gap-2 rounded-md bg-[#f8f8f8] px-4 py-8">
+                        <div className="mw-[15rem] flex flex-row justify-center gap-2 rounded-md bg-[#f8f8f8] px-4 py-8">
                             <DollarOutlined className="h-max w-max rounded-[50%] bg-[#FFC8C4] p-2 text-[2rem] text-[#ff3d3d]" />
                             <div className="w-max">
                                 <h3 className="text-md font-medium">Revenue</h3>
                                 <h3 className="text-xl font-medium">
-                                    {revenue}
+                                    {currencyFormatter(revenue)}
                                 </h3>
                             </div>
                         </div>
