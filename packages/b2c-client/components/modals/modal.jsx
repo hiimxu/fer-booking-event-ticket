@@ -101,11 +101,13 @@ const Modal = ({
                                     />
                                 )}
 
-                                <Button
-                                    disabled={disabled}
-                                    label={actionLabel}
-                                    onClick={handleSubmit}
-                                />
+                                {onSubmit && (
+                                    <Button
+                                        disabled={disabled}
+                                        label={actionLabel}
+                                        onClick={handleSubmit}
+                                    />
+                                )}
                             </div>
                             {footer}
                         </div>
