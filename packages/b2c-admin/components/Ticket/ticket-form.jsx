@@ -13,7 +13,7 @@ import { PlusOutlined, EditOutlined } from '@ant-design/icons';
 import { useMutation } from 'common/hooks/useMutation';
 import { toast } from 'react-toastify';
 import { useQuery } from 'common/hooks/useQuery';
-import { TicketType } from '~/utils/enum';
+import { TicketType } from 'common/constant/constant';
 
 const TicketForm = ({ event_id, ticketId, successCallback, label, title }) => {
     const formRef = useRef(null);

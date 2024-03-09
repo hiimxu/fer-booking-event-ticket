@@ -9,10 +9,11 @@ import { useMutation } from 'common/hooks/useMutation';
 import dayjs from 'dayjs';
 import { toast } from 'react-toastify';
 import usePaymentModal from '~/hooks/usePaymentModal';
+import { useRouter } from 'next/router';
 
 const BookingModal = ({ isOpen, onClose, ticketId }) => {
     const auth = useAuth('client');
-
+    const {query} = useRouter()
     const { data: ticketData, isLoading: getTicketLoading } = useQuery(
         `eventTikets?id=${ticketId}`,
         { id: ticketId }
@@ -38,6 +39,7 @@ const BookingModal = ({ isOpen, onClose, ticketId }) => {
 
     const handleSubmit = () => {
         const submitObject = {
+            event_id: query?.id,
             ticket_id: ticketId,
             user_id: auth?.id,
             status: 'PENDING',
