@@ -44,7 +44,7 @@ const EventDetail = () => {
         <Spin spinning={isLoading}>
             <main className="py-24">
                 <Container>
-                    <div className="flex gap-8 border-b pb-16">
+                    <div className="flex gap-8 pb-16">
                         <div className="min-w-[20%]">
                             <Image
                                 className="rounded-xl object-cover"

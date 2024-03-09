@@ -9,6 +9,7 @@ import { useRouter } from 'next/router';
 import DefaultLayout from '~/components/layout/default-layout';
 import RegisterModal from '~/components/modals/register-modal';
 import LoginModal from '~/components/modals/login-modal';
+import PaymentModal from '~/components/modals/payment-modal';
 
 function defaultLayout(page) {
     return <DefaultLayout>{page}</DefaultLayout>;
@@ -55,6 +56,7 @@ export default function App({ Component, pageProps }) {
             <ToastContainer />
             <RegisterModal />
             <LoginModal />
+            <PaymentModal />
             {getLayout(<Component {...pageProps} />)}
         </Spin>
     );
