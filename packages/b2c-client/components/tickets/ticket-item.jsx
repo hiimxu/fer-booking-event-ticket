@@ -1,16 +1,23 @@
 import React, { useState } from 'react';
 import BookingModal from '../modals/booking-modal';
+import { cn } from 'common/lib/utils';
 
-const TicketItem = ({ type, area, children, ticketId }) => {
+const TicketItem = ({ type, area, children, ticketId, disable }) => {
     const [showBooking, setShowBooking] = useState(false);
 
     return (
         <>
             <div
-                className="flex h-[162px] w-full cursor-pointer rounded-lg border"
-                onClick={() => setShowBooking(true)}
+                className={cn(
+                    'flex h-[162px] w-full rounded-lg border',
+                    disable ? '' : 'cursor-pointer'
+                )}
+                onClick={() => {
+                    if (disable) return;
+                    setShowBooking(true);
+                }}
             >
-                <div className="flex-1 px-3 py-4">{children}</div>
+                <div className="flex-1 p-4">{children}</div>
                 <div className="relative flex h-[100%] items-center justify-center border-l-2 border-dashed px-6">
                     <p className="uppercase">
                         {type === 0 ? 'V' : 'N'}-{area}
