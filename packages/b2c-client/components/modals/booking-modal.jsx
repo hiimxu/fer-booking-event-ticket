@@ -13,7 +13,7 @@ import { useRouter } from 'next/router';
 
 const BookingModal = ({ isOpen, onClose, ticketId }) => {
     const auth = useAuth('client');
-    const {query} = useRouter()
+    const { query } = useRouter();
     const { data: ticketData, isLoading: getTicketLoading } = useQuery(
         `eventTikets?id=${ticketId}`,
         { id: ticketId }
@@ -52,7 +52,7 @@ const BookingModal = ({ isOpen, onClose, ticketId }) => {
     const bodyContent = (
         <div>
             <div>
-                <TicketItem type={ticket?.type} area={ticket?.area}>
+                <TicketItem type={ticket?.type} area={ticket?.area} disable>
                     <div className="flex flex-col gap-1.5">
                         <div className="text-xl font-semibold text-slate-600">
                             {currencyFormatter(ticket?.price)}

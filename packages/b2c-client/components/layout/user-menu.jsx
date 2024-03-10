@@ -65,6 +65,13 @@ const UserMenu = () => {
                         {currentUser ? (
                             <>
                                 <MenuItem
+                                    label="Manage your profile"
+                                    onClick={() => {
+                                        router.push('my-page');
+                                        setIsOpen(false);
+                                    }}
+                                />
+                                <MenuItem
                                     className="text-rose-500"
                                     label="Logout"
                                     onClick={signOut}

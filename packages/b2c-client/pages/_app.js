@@ -10,6 +10,7 @@ import DefaultLayout from '~/components/layout/default-layout';
 import RegisterModal from '~/components/modals/register-modal';
 import LoginModal from '~/components/modals/login-modal';
 import PaymentModal from '~/components/modals/payment-modal';
+import MyPageLayout from '~/components/layout/my-page-layout';
 
 function defaultLayout(page) {
     return <DefaultLayout>{page}</DefaultLayout>;
@@ -17,10 +18,12 @@ function defaultLayout(page) {
 
 export default function App({ Component, pageProps }) {
     const router = useRouter();
-    const getLayout = Component.getLayout || defaultLayout;
+
     const [loading, setLoading] = useState(false);
 
     const loadingRef = useRef(undefined);
+
+    let getLayout = Component.getLayout || defaultLayout;
 
     useEffect(() => {
         const start = () => {
@@ -50,6 +53,16 @@ export default function App({ Component, pageProps }) {
             window.removeEventListener('hideLoading', end);
         };
     }, []);
+
+    if (router.pathname.startsWith('/my-page')) {
+        getLayout =
+            Component.getLayout ??
+            ((page) => (
+                <DefaultLayout>
+                    <MyPageLayout>{page}</MyPageLayout>
+                </DefaultLayout>
+            ));
+    }
 
     return (
         <Spin spinning={loading}>

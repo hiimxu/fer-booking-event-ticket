@@ -59,6 +59,24 @@ export const useMutation = () => {
         }
     };
 
+    const patchApi = async (endpointURL, body) => {
+        dispatch({
+            type: 'API_LOADING',
+        });
+        try {
+            const response = await request.patch(endpointURL, body);
+            dispatch({
+                type: 'API_SUCCESS',
+                payload: response?.data,
+            });
+        } catch (error) {
+            dispatch({
+                type: 'API_FAILED',
+                payload: 'Something when wrong. Please try again!',
+            });
+        }
+    };
+
     const deleteApi = async (endpointURL) => {
         dispatch({
             type: 'API_LOADING',
@@ -78,12 +96,17 @@ export const useMutation = () => {
     };
 
     const trigger = async (method, endpointURL, body) => {
-        if (method === 'POST') {
-            postApi(endpointURL, body);
-        } else if (method === 'PUT') {
-            putApi(endpointURL, body);
-        } else if (method === 'DELETE') {
-            deleteApi(endpointURL);
+        switch (method) {
+            case 'POST':
+                return postApi(endpointURL, body);
+            case 'PUT':
+                return putApi(endpointURL, body);
+            case 'PATCH':
+                return patchApi(endpointURL, body);
+            case 'DELETE':
+                return deleteApi(endpointURL);
+            default:
+                return () => {};
         }
     };
 
