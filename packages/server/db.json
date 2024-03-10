@@ -240,7 +240,7 @@
       "user_id": "293b",
       "id": "08a6",
       "createAt": "09/03/2024 19:27:33",
-      "status": "APPROVED",
+      "status": "PENDING",
       "content": "làm sao"
     },
     {
@@ -468,6 +468,15 @@
       "content": "làm sao",
       "ticket_id": "1ccoc",
       "create_at": "10/03/2024 23:01:42"
+    },
+    {
+      "id": "33d4",
+      "booking_id": "08a6",
+      "status": "NEW",
+      "user_id": "293b",
+      "content": "làm sao",
+      "ticket_id": "1ccoc",
+      "create_at": "10/03/2024 23:58:13"
     }
   ]
 }

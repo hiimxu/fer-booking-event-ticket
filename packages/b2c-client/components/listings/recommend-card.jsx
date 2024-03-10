@@ -44,17 +44,15 @@ const RecommendCard = ({ data }) => {
                     }
                 }}
             >
-                <Image
-                    className="rounded-xl object-cover transition group-hover:scale-110"
-                    src={data?.image?.[0]}
-                    width={384}
-                    height={420}
-                    style={{
-                        width: 384,
-                        height: 420,
-                    }}
-                    alt={data?.name}
-                />
+                <div className="aspect-square h-[420px] w-[384px] overflow-hidden rounded-xl">
+                    <Image
+                        className="h-full w-full rounded-xl object-cover transition group-hover:scale-110"
+                        src={data?.image?.[0]}
+                        width={384}
+                        height={420}
+                        alt={data?.name}
+                    />
+                </div>
                 <div className="absolute -bottom-20 right-0 flex h-[198px] w-[330px] flex-col gap-2 rounded-bl-xl rounded-tr-xl bg-white p-4 shadow-lg">
                     <p className="text-xl font-semibold">{data?.name}</p>
                     <p className="flex gap-1 text-slate-500">

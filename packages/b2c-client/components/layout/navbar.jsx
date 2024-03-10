@@ -3,6 +3,7 @@ import Container from '../container';
 import UserMenu from './user-menu';
 import Logo from './logo';
 import Search from './search';
+import Notification from './notification';
 
 const Navbar = () => {
     return (
@@ -12,7 +13,10 @@ const Navbar = () => {
                     <div className="flex flex-row items-center justify-between gap-3 md:gap-0">
                         <Logo />
                         <Search />
-                        <UserMenu />
+                        <div className="flex gap-6">
+                            <Notification />
+                            <UserMenu />
+                        </div>
                     </div>
                 </Container>
             </div>

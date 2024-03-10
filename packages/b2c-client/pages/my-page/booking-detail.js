@@ -3,6 +3,7 @@ import Tab from 'common/components/tab';
 import BookingApproved from '~/components/my-page/booking-approved';
 import BookingPending from '~/components/my-page/booking-pending';
 import BookingRejected from '~/components/my-page/booking-rejected';
+import MyPageHeader from '~/components/my-page/my-page-header';
 
 const BookingDetail = () => {
     const items = [
@@ -24,6 +25,7 @@ const BookingDetail = () => {
     ];
     return (
         <div>
+            <MyPageHeader title="Booking Detail" />
             <Tab items={items} />
         </div>
     );

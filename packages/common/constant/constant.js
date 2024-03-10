@@ -13,3 +13,5 @@ export const TicketType = [
 ];
 
 export const STATUS_BOOKING = ['PENDING', 'APPROVED', 'REJECT'];
+
+export const ONE_MINUTE = 60000;
