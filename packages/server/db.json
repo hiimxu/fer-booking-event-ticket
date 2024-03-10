@@ -240,7 +240,8 @@
       "user_id": "293b",
       "id": "08a6",
       "createAt": "09/03/2024 19:27:33",
-      "status": "APPROVED"
+      "status": "APPROVED",
+      "content": "làm sao"
     },
     {
       "event_id": "b6b4",
@@ -248,7 +249,7 @@
       "user_id": "293b",
       "id": "723d",
       "createAt": "09/03/2024 21:15:08",
-      "status": "APPROVED"
+      "status": "REJECT"
     },
     {
       "event_id": "b6b4",
@@ -449,6 +450,24 @@
       "id": "8f6c",
       "createAt": "10/03/2024 04:20:50",
       "status": "APPROVED"
+    }
+  ],
+  "notifications": [
+    {
+      "id": "20d7",
+      "booking_id": "08a6",
+      "status": "NEW",
+      "content": "ok",
+      "ticket_id": "1ccoc",
+      "create_at": "10/03/2024 23:01:26"
+    },
+    {
+      "id": "cbfa",
+      "booking_id": "08a6",
+      "status": "NEW",
+      "content": "làm sao",
+      "ticket_id": "1ccoc",
+      "create_at": "10/03/2024 23:01:42"
     }
   ]
 }

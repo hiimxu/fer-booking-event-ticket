@@ -1,12 +1,20 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Button, Modal, Form, Input, Spin, Radio, Select } from 'antd';
-import { PlusOutlined, EditOutlined } from '@ant-design/icons';
+import React, { useEffect, useRef, useState, useMemo } from 'react';
+import { Button, Modal, Form, Input, Spin, Select, Descriptions } from 'antd';
+import { EditOutlined } from '@ant-design/icons';
 import { useMutation } from 'common/hooks/useMutation';
 import { toast } from 'react-toastify';
 import { useQuery } from 'common/hooks/useQuery';
 import { STATUS_BOOKING } from 'common/constant/constant';
+import { currencyFormatter } from 'common/lib/utils';
+import dayjs from 'dayjs';
 
-const BookingForm = ({ bookingId, successCallback, label, title }) => {
+const BookingForm = ({
+    bookingId,
+    successCallback,
+    label,
+    title,
+    dataSource,
+}) => {
     const formRef = useRef(null);
     const [form] = Form.useForm();
 
@@ -19,6 +27,12 @@ const BookingForm = ({ bookingId, successCallback, label, title }) => {
     } = useQuery(`booking/${bookingId}`, { bookingId, isModalOpen });
 
     const [trigger, { isLoading, data }] = useMutation();
+    const [triggerNoti, { isLoading: isLoadingNoti, data: dataNoti }] =
+        useMutation();
+
+    const dataTicket = useMemo(() => {
+        return dataSource?.find((item) => item.key == bookingId);
+    }, [bookingId]);
 
     useEffect(() => {
         if (isModalOpen) {
@@ -31,14 +45,14 @@ const BookingForm = ({ bookingId, successCallback, label, title }) => {
     }, [bookingData]);
 
     useEffect(() => {
-        if (data) {
+        if (data && dataNoti) {
             toast.success('Update booking successfully!');
             setIsModalOpen(false);
             setTimeout(() => {
                 successCallback?.();
             });
         }
-    }, [data]);
+    }, [data, dataNoti]);
 
     const showModal = () => {
         form.resetFields();
@@ -54,7 +68,15 @@ const BookingForm = ({ bookingId, successCallback, label, title }) => {
     };
 
     const onFinish = (values) => {
-        if (bookingId) {
+        if (bookingId && dataSource) {
+            const notiValue = {
+                booking_id: bookingId,
+                status: 'NEW',
+                content: values?.content || '',
+                ticket_id: dataTicket?.ticketId,
+                create_at: dayjs().format('DD/MM/YYYY HH:mm:ss'),
+            };
+            triggerNoti('POST', 'notifications', notiValue);
             trigger('PUT', `booking/${bookingId}`, values);
         }
     };
@@ -77,8 +99,26 @@ const BookingForm = ({ bookingId, successCallback, label, title }) => {
                 okButtonProps={{ loading: isLoading || getLoading }}
                 cancelButtonProps={{ disabled: isLoading || getLoading }}
                 centered
+                width={600}
             >
                 <Spin spinning={getLoading}>
+                    <Descriptions title="Ticket Info">
+                        <Descriptions.Item label="Id">
+                            {dataTicket?.key}
+                        </Descriptions.Item>
+                        <Descriptions.Item label="User name">
+                            {dataTicket.userName}
+                        </Descriptions.Item>
+                        <Descriptions.Item label="Ticket name">
+                            {dataTicket.ticketName}
+                        </Descriptions.Item>
+                        <Descriptions.Item label="Price">
+                            {currencyFormatter(dataTicket.price)}
+                        </Descriptions.Item>
+                        <Descriptions.Item label="Even name">
+                            {dataTicket.eventName}
+                        </Descriptions.Item>
+                    </Descriptions>
                     <Form
                         layout="vertical"
                         ref={formRef}
@@ -122,6 +162,7 @@ const BookingForm = ({ bookingId, successCallback, label, title }) => {
                         >
                             <Input disabled={true} />
                         </Form.Item>
+
                         <Form.Item
                             className="w-40"
                             label="Booking status"
@@ -140,6 +181,10 @@ const BookingForm = ({ bookingId, successCallback, label, title }) => {
                                     </Select.Option>
                                 ))}
                             </Select>
+                        </Form.Item>
+
+                        <Form.Item label="Note" name="content">
+                            <Input.TextArea rows={4} />
                         </Form.Item>
                         <Form.Item hidden>
                             <Button type="primary" htmlType="submit">
