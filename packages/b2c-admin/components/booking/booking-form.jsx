@@ -72,6 +72,7 @@ const BookingForm = ({
             const notiValue = {
                 booking_id: bookingId,
                 status: 'NEW',
+                user_id: dataTicket.user_id,
                 content: values?.content || '',
                 ticket_id: dataTicket?.ticketId,
                 create_at: dayjs().format('DD/MM/YYYY HH:mm:ss'),

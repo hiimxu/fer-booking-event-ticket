@@ -48,6 +48,7 @@ export default function Booking() {
                 ticketName: getType(item?.ticket_id, listTicket),
                 ticketId: item?.ticket_id,
                 userName: getType(item?.user_id, listUser),
+                user_id: item?.user_id,
                 price: getValueByObjKey(item?.ticket_id, listTicket, 'price'),
                 status: (
                     <Tag
