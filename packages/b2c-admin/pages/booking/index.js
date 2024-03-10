@@ -1,11 +1,12 @@
 import { Table, Space, Tag, Spin } from 'antd';
 import { useQuery } from 'common/hooks/useQuery';
 import { useMemo } from 'react';
-import { getType } from 'common/lib/getType';
+import { getType, getValueByObjKey } from 'common/lib/getType';
 import Container from '~/components/container';
 import BookingForm from '~/components/booking/booking-form';
 
 import { useColumnSearch } from 'common/components/column-search-props';
+import { STATUS_BOOKING } from 'common/constant/constant';
 export default function Booking() {
     const { getColumnSearchProps } = useColumnSearch();
     const {
@@ -13,7 +14,6 @@ export default function Booking() {
         reload,
         isLoading: bookingLoading,
     } = useQuery('booking');
-
     const { data: listUser, isLoading: userLoading } = useQuery('users');
     const { data: listTicket, isLoading: ticketLoading } =
         useQuery('eventTikets');
@@ -46,7 +46,9 @@ export default function Booking() {
                 key: item?.id,
                 eventName: getType(item?.event_id, listEvent),
                 ticketName: getType(item?.ticket_id, listTicket),
+                ticketId: item?.ticket_id,
                 userName: getType(item?.user_id, listUser),
+                price: getValueByObjKey(item?.ticket_id, listTicket, 'price'),
                 status: (
                     <Tag
                         color={
@@ -56,6 +58,7 @@ export default function Booking() {
                                   ? 'success'
                                   : 'default'
                         }
+                        key={item?.status}
                     >
                         {item?.status}
                     </Tag>
@@ -94,6 +97,10 @@ export default function Booking() {
             title: 'Status',
             dataIndex: 'status',
             key: 'status',
+            filters: STATUS_BOOKING?.map((text) => ({ text, value: text })),
+            onFilter: (value, record) => {
+                return record.status.key == value;
+            },
         },
         {
             title: 'Create At',
@@ -106,6 +113,7 @@ export default function Booking() {
             render: (_, record) => (
                 <Space size="middle">
                     <BookingForm
+                        dataSource={dataSource}
                         bookingId={record?.key}
                         title="Edit booking"
                         successCallback={reload}
