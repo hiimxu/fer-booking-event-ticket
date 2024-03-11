@@ -50,10 +50,7 @@ const Modal = ({
             return;
         }
         setShowModal(false);
-        setTimeout(() => {
-            onClose();
-            enableScroll();
-        }, 200);
+        onClose();
     }, [disabled, onClose]);
 
     const handleSubmit = useCallback(() => {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef, useMemo } from 'react';
-import { BellOutlined, CheckOutlined } from '@ant-design/icons';
+import { BellOutlined } from '@ant-design/icons';
 import { useQuery } from 'common/hooks/useQuery';
 import { useAuth } from 'common/hooks/useAuth';
 import { ONE_MINUTE } from 'common/constant/constant';
@@ -9,7 +9,7 @@ import Link from 'next/link';
 const Notification = () => {
     const auth = useAuth('client');
 
-    const { data, isLoading, reload } = useQuery(
+    const { data, reload } = useQuery(
         `notifications?user_id=${auth?.id}&status=NEW`,
         { user_id: auth?.id }
     );

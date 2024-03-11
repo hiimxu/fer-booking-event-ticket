@@ -1,19 +1,15 @@
-import { useMutation } from 'common/hooks/useMutation';
 import { useQuery } from 'common/hooks/useQuery';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 import React, { useMemo } from 'react';
 
 const NotificationBoxItem = ({ data }) => {
-    const { data: bookingData, isLoading: bookingLoading } = useQuery(
-        `booking/${data?.booking_id}`,
-        { id: data?.booking_id }
-    );
+    const { data: bookingData } = useQuery(`booking/${data?.booking_id}`, {
+        id: data?.booking_id,
+    });
 
-    const { data: eventData, isLoading: eventLoading } = useQuery(
-        `events/${bookingData?.event_id}`,
-        { id: bookingData?.event_id }
-    );
+    const { data: eventData } = useQuery(`events/${bookingData?.event_id}`, {
+        id: bookingData?.event_id,
+    });
 
     const status = useMemo(() => {
         switch (bookingData?.status) {
