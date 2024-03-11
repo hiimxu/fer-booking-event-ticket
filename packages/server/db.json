@@ -329,7 +329,8 @@
       "user_id": "293b",
       "id": "528a",
       "createAt": "09/03/2024 22:10:45",
-      "status": "APPROVED"
+      "status": "APPROVED",
+      "isRate": true
     },
     {
       "event_id": "c3b2",
@@ -337,7 +338,8 @@
       "user_id": "293b",
       "id": "3b21",
       "createAt": "09/03/2024 22:10:52",
-      "status": "APPROVED"
+      "status": "APPROVED",
+      "isRate": true
     },
     {
       "event_id": "b6b4",
@@ -353,7 +355,8 @@
       "user_id": "293b",
       "id": "5063",
       "createAt": "10/03/2024 02:40:01",
-      "status": "APPROVED"
+      "status": "APPROVED",
+      "isRate": true
     },
     {
       "event_id": "b6b4",
@@ -361,7 +364,8 @@
       "user_id": "293b",
       "id": "5a21",
       "createAt": "10/03/2024 02:40:05",
-      "status": "APPROVED"
+      "status": "APPROVED",
+      "isRate": true
     },
     {
       "event_id": "b6b4",
@@ -377,7 +381,8 @@
       "user_id": "293b",
       "id": "6f8b",
       "createAt": "10/03/2024 02:40:19",
-      "status": "APPROVED"
+      "status": "APPROVED",
+      "isRate": true
     },
     {
       "event_id": "c3b2",
@@ -417,7 +422,8 @@
       "user_id": "293b",
       "id": "06df",
       "createAt": "10/03/2024 04:00:54",
-      "status": "APPROVED"
+      "status": "APPROVED",
+      "isRate": true
     },
     {
       "event_id": "9500",
@@ -425,7 +431,8 @@
       "user_id": "293b",
       "id": "6cfa",
       "createAt": "10/03/2024 04:00:58",
-      "status": "APPROVED"
+      "status": "APPROVED",
+      "isRate": true
     },
     {
       "event_id": "9500",
@@ -433,7 +440,8 @@
       "user_id": "293b",
       "id": "dcde",
       "createAt": "10/03/2024 04:01:03",
-      "status": "APPROVED"
+      "status": "APPROVED",
+      "isRate": true
     },
     {
       "event_id": "3c55",
@@ -526,6 +534,78 @@
       "user_id": "293b",
       "createAt": "11/03/2024 18:00",
       "ticket_id": "a00a"
+    },
+    {
+      "id": "0aff",
+      "quality": 2,
+      "comment": "bad",
+      "event_id": "c3b2",
+      "user_id": "293b",
+      "createAt": "11/03/2024 20:04",
+      "ticket_id": "1adb"
+    },
+    {
+      "id": "16cb",
+      "quality": 5,
+      "comment": "good",
+      "event_id": "c3b2",
+      "user_id": "293b",
+      "createAt": "11/03/2024 20:04",
+      "ticket_id": "1adb"
+    },
+    {
+      "id": "b559",
+      "quality": 5,
+      "comment": "test",
+      "event_id": "b6b4",
+      "user_id": "293b",
+      "createAt": "11/03/2024 20:06",
+      "ticket_id": "d70e"
+    },
+    {
+      "id": "2d3c",
+      "quality": 5,
+      "comment": "sad",
+      "event_id": "b6b4",
+      "user_id": "293b",
+      "createAt": "11/03/2024 20:07",
+      "ticket_id": "d70e"
+    },
+    {
+      "id": "ca24",
+      "quality": 5,
+      "comment": "test",
+      "event_id": "9500",
+      "user_id": "293b",
+      "createAt": "11/03/2024 20:09",
+      "ticket_id": "d799"
+    },
+    {
+      "id": "6607",
+      "quality": 5,
+      "comment": "asd",
+      "event_id": "9500",
+      "user_id": "293b",
+      "createAt": "11/03/2024 20:10",
+      "ticket_id": "d799"
+    },
+    {
+      "id": "3c90",
+      "quality": 5,
+      "comment": "wqe",
+      "event_id": "9500",
+      "user_id": "293b",
+      "createAt": "11/03/2024 20:12",
+      "ticket_id": "30a5"
+    },
+    {
+      "id": "d91d",
+      "quality": 5,
+      "comment": "sad",
+      "event_id": "c3b2",
+      "user_id": "293b",
+      "createAt": "11/03/2024 20:12",
+      "ticket_id": "1adb"
     }
   ]
 }

@@ -8,6 +8,7 @@ import { getWard, getDistrict, getProvince } from 'common/lib/getAddress';
 import dayjs from 'dayjs';
 import { CalendarFilled } from '@ant-design/icons';
 import ListTicket from '~/components/tickets/list-ticket';
+import ListComment from '~/components/events/list-comment';
 
 const EventDetail = () => {
     const { query } = useRouter();
@@ -95,6 +96,11 @@ const EventDetail = () => {
                 <div className="pt-16">
                     <Container>
                         <ListTicket eventId={query?.id} />
+                    </Container>
+                </div>
+                <div className="mt-16">
+                    <Container>
+                        <ListComment eventId={query?.id} />
                     </Container>
                 </div>
             </main>

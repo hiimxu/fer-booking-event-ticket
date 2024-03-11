@@ -168,7 +168,9 @@ const BookingItem = ({ bookingData }) => {
                     <RateModal
                         isOpen={showRateEvent}
                         bookingData={booking}
-                        onClose={() => setShowRateEvent(false)}
+                        onClose={() => {
+                            setShowRateEvent(false);
+                        }}
                     />
                 )}
             </>

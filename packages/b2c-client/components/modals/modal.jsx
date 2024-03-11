@@ -36,6 +36,9 @@ const Modal = ({
         if (showModal) {
             disableScroll();
         }
+        return () => {
+            enableScroll();
+        };
     }, [showModal]);
 
     useEffect(() => {

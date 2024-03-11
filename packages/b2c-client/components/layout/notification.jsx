@@ -4,6 +4,7 @@ import { useQuery } from 'common/hooks/useQuery';
 import { useAuth } from 'common/hooks/useAuth';
 import { ONE_MINUTE } from 'common/constant/constant';
 import NotificationItem from './notification-item';
+import Link from 'next/link';
 
 const Notification = () => {
     const auth = useAuth('client');
@@ -86,6 +87,14 @@ const Notification = () => {
                                 />
                             ))
                         )}
+                    </div>
+                    <div className="border-t py-2 text-center">
+                        <Link
+                            href="/my-page/notification-box"
+                            className="text-sm text-blue-600"
+                        >
+                            View all
+                        </Link>
                     </div>
                 </div>
             )}
