@@ -1,5 +1,4 @@
 import React, { useState, useCallback, useEffect, useRef } from 'react';
-import Avatar from '../Avatar';
 import { MenuOutlined } from '@ant-design/icons';
 import MenuItem from './menu-item';
 import useRegisterModal from '~/hooks/useRegisterModal';
@@ -7,6 +6,8 @@ import useLoginModal from '~/hooks/useLoginModal';
 import { useAuth } from 'common/hooks/useAuth';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
+import { useQuery } from 'common/hooks/useQuery';
+import Image from 'next/image';
 
 const UserMenu = () => {
     const router = useRouter();
@@ -17,6 +18,10 @@ const UserMenu = () => {
     const { onOpen: onOpenLoginModal } = useLoginModal();
 
     const currentUser = useAuth('client');
+
+    const { data: user } = useQuery(`users/${currentUser?.id}`, {
+        id: currentUser?.id,
+    });
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -55,7 +60,17 @@ const UserMenu = () => {
                 >
                     <MenuOutlined />
                     <div className="hidden md:block">
-                        <Avatar />
+                        <Image
+                            src={user?.avatar || '/images/placeholder.jpg'}
+                            alt="avatar"
+                            className="rounded-full object-cover"
+                            width={30}
+                            height={30}
+                            style={{
+                                width: 30,
+                                height: 30,
+                            }}
+                        />
                     </div>
                 </div>
             </div>
@@ -67,7 +82,7 @@ const UserMenu = () => {
                                 <MenuItem
                                     label="Manage your profile"
                                     onClick={() => {
-                                        router.push('my-page');
+                                        router.push('/my-page');
                                         setIsOpen(false);
                                     }}
                                 />

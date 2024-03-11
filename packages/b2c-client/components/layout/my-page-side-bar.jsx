@@ -36,7 +36,6 @@ const MyPageSideBar = () => {
             <SidebarItem href="/my-page/notification-box">
                 Notification
             </SidebarItem>
-            <SidebarItem href="/my-page/your-comment">Your comment</SidebarItem>
         </nav>
     );
 };

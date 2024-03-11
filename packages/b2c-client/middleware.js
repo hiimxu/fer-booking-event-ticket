@@ -11,5 +11,5 @@ export function middleware(request) {
 }
 
 export const config = {
-    matcher: ['/events/:path*'],
+    matcher: ['/events/:path*', '/my-page/:path*'],
 };

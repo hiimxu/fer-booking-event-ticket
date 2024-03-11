@@ -3,6 +3,7 @@ import BookingItem from './booking-item';
 import { useQuery } from 'common/hooks/useQuery';
 import { useAuth } from 'common/hooks/useAuth';
 import { List, Spin } from 'antd';
+import QRCode from 'react-qr-code';
 
 const BookingApproved = () => {
     const auth = useAuth('client');
@@ -29,7 +30,7 @@ const BookingApproved = () => {
                     }}
                     dataSource={bookingApproved}
                     renderItem={(item) => (
-                        <List.Item>
+                        <List.Item className="!p-0">
                             <BookingItem bookingData={item} />
                         </List.Item>
                     )}

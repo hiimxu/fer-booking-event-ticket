@@ -5,6 +5,7 @@ import { useAuth } from 'common/hooks/useAuth';
 import { useQuery } from 'common/hooks/useQuery';
 import { Spin } from 'antd';
 import UserProfileModal from '../modals/user-profile-modal';
+import ChangePasswordModal from '../modals/change-password-modal';
 
 const UserProfile = () => {
     const auth = useAuth('client');
@@ -19,6 +20,7 @@ const UserProfile = () => {
     );
 
     const [editProfileModal, setEditProfileModal] = useState(false);
+    const [showChangePassModal, setShowChangePassModal] = useState(false);
 
     const user = useMemo(() => {
         return data?.[0];
@@ -44,41 +46,49 @@ const UserProfile = () => {
             <Spin spinning={isLoading}>
                 <div className="rounded-lg p-10 shadow-[0_0_6px_rgba(0,0,0,0.149)]">
                     <div className="flex gap-6">
-                        <div
-                            className="flex cursor-pointer gap-6"
-                            onClick={() => {
-                                setEditProfileModal(true);
-                            }}
-                        >
-                            <div>
-                                <div className="relative">
-                                    <Image
-                                        src={
-                                            user?.avatar ||
-                                            '/images/placeholder.jpg'
-                                        }
-                                        width={76}
-                                        height={76}
-                                        alt="avatar"
-                                        className="rounded-full object-cover"
-                                        style={{
-                                            width: 76,
-                                            height: 76,
-                                        }}
-                                    />
-                                    <div className="absolute bottom-0 right-0 flex h-[32px] w-[32px] items-center justify-center rounded-full border bg-white text-lg text-slate-400">
-                                        <CameraFilled />
+                        <div>
+                            <div
+                                className="flex cursor-pointer gap-6"
+                                onClick={() => {
+                                    setEditProfileModal(true);
+                                }}
+                            >
+                                <div>
+                                    <div className="relative">
+                                        <Image
+                                            src={
+                                                user?.avatar ||
+                                                '/images/placeholder.jpg'
+                                            }
+                                            width={76}
+                                            height={76}
+                                            alt="avatar"
+                                            className="rounded-full object-cover"
+                                            style={{
+                                                width: 76,
+                                                height: 76,
+                                            }}
+                                        />
+                                        <div className="absolute bottom-0 right-0 flex h-[32px] w-[32px] items-center justify-center rounded-full border bg-white text-lg text-slate-400">
+                                            <CameraFilled />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="flex flex-col gap-1">
+                                    <div className="text-xl font-semibold">
+                                        {user?.name}
+                                    </div>
+                                    <div>
+                                        <div>{user?.email}</div>
+                                        <div>{user?.phone}</div>
                                     </div>
                                 </div>
                             </div>
-                            <div className="flex flex-col gap-2">
-                                <div className="text-xl font-semibold">
-                                    {user?.name}
-                                </div>
-                                <div>
-                                    <div>{user?.email}</div>
-                                    <div>{user?.phone}</div>
-                                </div>
+                            <div
+                                className="cursor-pointer text-sm underline"
+                                onClick={() => setShowChangePassModal(true)}
+                            >
+                                Change password
                             </div>
                         </div>
                         <div className="flex flex-1 px-8 font-medium">
@@ -98,17 +108,27 @@ const UserProfile = () => {
                     </div>
                 </div>
             </Spin>
-            {true && (
-                <UserProfileModal
-                    isOpen={editProfileModal}
-                    onClose={() => {
-                        setEditProfileModal(false);
-                    }}
-                    successCallback={() => {
-                        reload();
-                    }}
-                />
-            )}
+            <>
+                {editProfileModal && (
+                    <UserProfileModal
+                        isOpen={editProfileModal}
+                        onClose={() => {
+                            setEditProfileModal(false);
+                        }}
+                        successCallback={() => {
+                            reload();
+                        }}
+                    />
+                )}
+                {showChangePassModal && (
+                    <ChangePasswordModal
+                        isOpen={showChangePassModal}
+                        onClose={() => {
+                            setShowChangePassModal(false);
+                        }}
+                    />
+                )}
+            </>
         </>
     );
 };

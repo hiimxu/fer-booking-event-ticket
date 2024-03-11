@@ -1,7 +1,6 @@
 import React from 'react';
 import Container from '../container';
 import MyPageSideBar from './my-page-side-bar';
-import UserProfile from '../my-page/user-profile';
 
 const MyPageLayout = ({ children }) => {
     return (
@@ -12,8 +11,7 @@ const MyPageLayout = ({ children }) => {
                         <MyPageSideBar />
                     </div>
                     <main className="col-span-7">
-                        <UserProfile />
-                        <div className="py-24">{children}</div>
+                        <div className="pb-32">{children}</div>
                     </main>
                 </div>
             </Container>

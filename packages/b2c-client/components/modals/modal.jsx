@@ -14,6 +14,7 @@ const Modal = ({
     disabled,
     secondaryAction,
     secondaryLabel,
+    disabledSubmit,
 }) => {
     const [showModal, setShowModal] = useState(isOpen);
 
@@ -35,6 +36,9 @@ const Modal = ({
         if (showModal) {
             disableScroll();
         }
+        return () => {
+            enableScroll();
+        };
     }, [showModal]);
 
     useEffect(() => {
@@ -46,10 +50,7 @@ const Modal = ({
             return;
         }
         setShowModal(false);
-        setTimeout(() => {
-            onClose();
-            enableScroll();
-        }, 200);
+        onClose();
     }, [disabled, onClose]);
 
     const handleSubmit = useCallback(() => {
@@ -103,7 +104,7 @@ const Modal = ({
 
                                 {onSubmit && (
                                     <Button
-                                        disabled={disabled}
+                                        disabled={disabled || disabledSubmit}
                                         label={actionLabel}
                                         onClick={handleSubmit}
                                     />

@@ -6,6 +6,7 @@ import {
     CheckSquareOutlined,
     UserOutlined,
     SolutionOutlined,
+    CommentOutlined,
 } from '@ant-design/icons';
 
 import { Menu } from 'antd';
@@ -43,13 +44,13 @@ const items = [
             <CheckSquareOutlined />
         </Link>
     ),
-    getItem(
-        'Users',
-        '/users',
-        <Link href={'/users'}>
-            <UserOutlined />
-        </Link>
-    ),
+    // getItem(
+    //     'Users',
+    //     '/users',
+    //     <Link href={'/users'}>
+    //         <UserOutlined />
+    //     </Link>
+    // ),
     getItem(
         'Reporting and Analysis',
         '/report',
@@ -62,6 +63,13 @@ const items = [
         '/promotion',
         <Link href={'/promotion'}>
             <SolutionOutlined />
+        </Link>
+    ),
+    getItem(
+        'Feedback',
+        '/feedback',
+        <Link href={'/feedback'}>
+            <CommentOutlined />
         </Link>
     ),
 ];

@@ -28,7 +28,7 @@ const BookingPending = () => {
                     }}
                     dataSource={bookingPending}
                     renderItem={(item) => (
-                        <List.Item>
+                        <List.Item className="!p-0">
                             <BookingItem bookingData={item} />
                         </List.Item>
                     )}

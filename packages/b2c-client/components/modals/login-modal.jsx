@@ -38,14 +38,11 @@ const LoginModal = () => {
                         values?.password,
                         data?.data?.[0]?.password
                     );
+                    const user = { ...data?.data?.[0], avatar: '' };
                     if (isCorrectPassword) {
-                        Cookies.set(
-                            'accessTokenClient',
-                            JSON.stringify(data?.data?.[0]),
-                            {
-                                expires: 7,
-                            }
-                        );
+                        Cookies.set('accessTokenClient', JSON.stringify(user), {
+                            expires: 7,
+                        });
                         toast.success('Login successfully!');
                         onClose();
                         setTimeout(() => {
