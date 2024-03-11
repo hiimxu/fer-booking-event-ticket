@@ -254,7 +254,7 @@
       "user_id": "293b",
       "id": "723d",
       "createAt": "09/03/2024 21:15:08",
-      "status": "REJECT"
+      "status": "APPROVED"
     },
     {
       "event_id": "b6b4",
@@ -519,6 +519,15 @@
       "content": "Payment success",
       "ticket_id": "1ccoc",
       "create_at": "11/03/2024 16:01:30"
+    },
+    {
+      "id": "75c4",
+      "booking_id": "723d",
+      "status": "SEEN",
+      "user_id": "293b",
+      "content": "",
+      "ticket_id": "1ccoc",
+      "create_at": "11/03/2024 22:53:32"
     }
   ],
   "comments": [
