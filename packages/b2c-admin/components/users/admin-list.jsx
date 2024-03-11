@@ -2,9 +2,10 @@ import React from 'react';
 import { Button, Spin, Table, Space, Tag } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { useQuery } from 'common/hooks/useQuery';
+import AdminForm from './admin-form';
 
 const AdminList = () => {
-    const { data, isLoading } = useQuery('admin');
+    const { data, isLoading, reload } = useQuery('admin');
     const columns = [
         {
             title: 'ID',
@@ -31,8 +32,11 @@ const AdminList = () => {
             key: 'action',
             render: (_, record) => (
                 <Space size="middle">
-                    <Button>Edit</Button>
-                    <Button>Delete</Button>
+                    <AdminForm
+                        adminId={record?.id}
+                        title="Edit account admin"
+                        successCallback={reload}
+                    />
                 </Space>
             ),
             width: '20%',
@@ -42,9 +46,11 @@ const AdminList = () => {
     return (
         <Spin spinning={isLoading}>
             <div className="flex justify-end">
-                <Button icon={<PlusOutlined />} type="primary">
-                    Create
-                </Button>
+                <AdminForm
+                    successCallback={reload}
+                    label="Create"
+                    title="Create account admin"
+                />
             </div>
             <div className="mt-5">
                 <Table

@@ -6,6 +6,13 @@
       "name": "Amdin",
       "role": "ADMIN",
       "password": "$2a$10$84OZ3AZeRCwI4TGAzD1v4OWahDCjGPWDDyoN4TquztVD7mBJ8ghkq"
+    },
+    {
+      "name": "Admin1",
+      "username": "admin1",
+      "password": "$2a$10$57Z74HMHdGvVvvy.WYU.NOC7Y2XaAD1y5np/RTWnp4r1aW5uTthx6",
+      "role": "ADMIN",
+      "id": "8590"
     }
   ],
   "users": [
