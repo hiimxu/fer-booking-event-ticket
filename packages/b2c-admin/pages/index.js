@@ -1,4 +1,4 @@
-import { Button, Table, Space, Tooltip, Spin } from 'antd';
+import { Button, Table, Space, Tooltip, Spin, Tag } from 'antd';
 import Link from 'next/link';
 import { PlusOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import { useQuery } from 'common/hooks/useQuery';
@@ -24,8 +24,7 @@ export default function Home() {
                 name: item?.name,
                 eventTypeId: getType(item?.eventTypeId, listType),
                 address: `${item?.street}, ${getWard(item?.wardId)?.name}, ${getDistrict(item?.districtId)?.name}, ${getProvince(item?.provinceId)?.name}`,
-                nTickets: item?.normalTicket,
-                vTickets: item?.vipTicket,
+                outstanding: item?.bigEvent,
             };
         });
     }, [listEvent, listType]);
@@ -47,15 +46,21 @@ export default function Home() {
             key: 'address',
         },
         {
-            title: 'Normal Tickets',
-            dataIndex: 'nTickets',
-            key: 'nTickets',
+            title: 'Outstanding',
+            dataIndex: 'outstanding',
+            key: 'outstanding',
+            render: (_, { outstanding }) => (
+                <>
+                    <Tag
+                        color={outstanding ? 'green' : 'red'}
+                        key={outstanding}
+                    >
+                        {outstanding ? 'TRUE' : 'FALSE'}
+                    </Tag>
+                </>
+            ),
         },
-        {
-            title: 'V.I.P Tickets',
-            dataIndex: 'vTickets',
-            key: 'vTickets',
-        },
+
         {
             title: 'Action',
             key: 'action',

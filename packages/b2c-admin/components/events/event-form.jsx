@@ -75,7 +75,7 @@ const EventForm = ({ initialValue, action, isLoading }) => {
                     <Input />
                 </Form.Item>
                 <Form.Item name="bigEvent" valuePropName="checked">
-                    <Checkbox>This is hot event.</Checkbox>
+                    <Checkbox>This is outstanding event.</Checkbox>
                 </Form.Item>
                 <div className="flex gap-5">
                     <Form.Item
@@ -212,34 +212,6 @@ const EventForm = ({ initialValue, action, isLoading }) => {
                 >
                     <Input />
                 </Form.Item>
-
-                <div className="flex gap-5">
-                    <Form.Item
-                        label="Normal tickets quantity"
-                        name="normalTicket"
-                        rules={[
-                            {
-                                required: true,
-                                message:
-                                    'Please input normal tickets quantity!',
-                            },
-                        ]}
-                    >
-                        <InputNumber className="w-full" min="0" />
-                    </Form.Item>
-                    <Form.Item
-                        label="V.I.P tickets quantity"
-                        name="vipTicket"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Please input V.I.P tickets quantity!',
-                            },
-                        ]}
-                    >
-                        <InputNumber className="w-full" min="0" />
-                    </Form.Item>
-                </div>
 
                 <Form.Item
                     label="Description"
