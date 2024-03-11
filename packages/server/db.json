@@ -240,8 +240,8 @@
       "user_id": "293b",
       "id": "08a6",
       "createAt": "09/03/2024 19:27:33",
-      "status": "PENDING",
-      "content": "làm sao"
+      "status": "APPROVED",
+      "content": "Payment success"
     },
     {
       "event_id": "b6b4",
@@ -472,11 +472,38 @@
     {
       "id": "33d4",
       "booking_id": "08a6",
-      "status": "NEW",
+      "status": "SEEN",
       "user_id": "293b",
       "content": "làm sao",
       "ticket_id": "1ccoc",
       "create_at": "10/03/2024 23:58:13"
+    },
+    {
+      "id": "fa71",
+      "booking_id": "08a6",
+      "status": "SEEN",
+      "user_id": "293b",
+      "content": "Payment success",
+      "ticket_id": "1ccoc",
+      "create_at": "11/03/2024 16:00:23"
+    },
+    {
+      "id": "18c2",
+      "booking_id": "08a6",
+      "status": "SEEN",
+      "user_id": "293b",
+      "content": "Rejected because you are not payment",
+      "ticket_id": "1ccoc",
+      "create_at": "11/03/2024 16:01:08"
+    },
+    {
+      "id": "0c9e",
+      "booking_id": "08a6",
+      "status": "SEEN",
+      "user_id": "293b",
+      "content": "Payment success",
+      "ticket_id": "1ccoc",
+      "create_at": "11/03/2024 16:01:30"
     }
   ]
 }
