@@ -14,6 +14,7 @@ const Modal = ({
     disabled,
     secondaryAction,
     secondaryLabel,
+    disabledSubmit,
 }) => {
     const [showModal, setShowModal] = useState(isOpen);
 
@@ -103,7 +104,7 @@ const Modal = ({
 
                                 {onSubmit && (
                                     <Button
-                                        disabled={disabled}
+                                        disabled={disabled || disabledSubmit}
                                         label={actionLabel}
                                         onClick={handleSubmit}
                                     />

@@ -6,9 +6,11 @@ const Avatar = ({ src }) => {
         <Image
             src={src || '/images/placeholder.jpg'}
             alt="avatar"
-            className="rounded-full"
-            height={30}
-            width={30}
+            className="rounded-full object-cover"
+            style={{
+                width: 70,
+                height: 70,
+            }}
         />
     );
 };

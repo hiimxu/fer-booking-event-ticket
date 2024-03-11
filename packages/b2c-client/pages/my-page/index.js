@@ -1,10 +1,14 @@
 import React from 'react';
 import ListingRecommend from '~/components/listings/listing-recommend';
+import UserProfile from '~/components/my-page/user-profile';
 
 const MyPage = () => {
     return (
         <div>
-            <ListingRecommend />
+            <UserProfile />
+            <div className="py-24">
+                <ListingRecommend />
+            </div>
         </div>
     );
 };

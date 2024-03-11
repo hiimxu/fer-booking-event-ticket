@@ -441,7 +441,8 @@
       "user_id": "293b",
       "id": "5111",
       "createAt": "10/03/2024 04:20:45",
-      "status": "APPROVED"
+      "status": "APPROVED",
+      "isRate": true
     },
     {
       "event_id": "3c55",
@@ -449,7 +450,8 @@
       "user_id": "293b",
       "id": "8f6c",
       "createAt": "10/03/2024 04:20:50",
-      "status": "APPROVED"
+      "status": "APPROVED",
+      "isRate": true
     }
   ],
   "notifications": [
@@ -504,6 +506,26 @@
       "content": "Payment success",
       "ticket_id": "1ccoc",
       "create_at": "11/03/2024 16:01:30"
+    }
+  ],
+  "comments": [
+    {
+      "id": "9aaa",
+      "quality": 5,
+      "comment": "test",
+      "event_id": "3c55",
+      "user_id": "293b",
+      "createAt": "11/03/2024 17:51",
+      "ticket_id": "c609"
+    },
+    {
+      "id": "7c41",
+      "quality": 5,
+      "comment": "Greate!",
+      "event_id": "3c55",
+      "user_id": "293b",
+      "createAt": "11/03/2024 18:00",
+      "ticket_id": "a00a"
     }
   ]
 }
