@@ -1,11 +1,10 @@
-import { Button, Table, Space, Tooltip, Spin } from 'antd';
+import { Button, Table, Space, Tooltip, Spin, Tag } from 'antd';
 import Link from 'next/link';
-import { EyeOutlined, FundViewOutlined } from '@ant-design/icons';
+import { EyeOutlined } from '@ant-design/icons';
 import { useQuery } from 'common/hooks/useQuery';
 import { useMemo } from 'react';
 import { getWard, getDistrict, getProvince } from 'common/lib/getAddress';
 import { getType } from 'common/lib/getType';
-import DeleteEvent from '~/components/events/delete-event';
 import Container from '~/components/container';
 
 const Tickets = () => {
@@ -24,8 +23,7 @@ const Tickets = () => {
                 name: item?.name,
                 eventTypeId: getType(item?.eventTypeId, listType),
                 address: `${item?.street}, ${getWard(item?.wardId)?.name}, ${getDistrict(item?.districtId)?.name}, ${getProvince(item?.provinceId)?.name}`,
-                nTickets: item?.normalTicket,
-                vTickets: item?.vipTicket,
+                outstanding: item?.bigEvent,
             };
         });
     }, [listEvent, listType]);
@@ -47,14 +45,19 @@ const Tickets = () => {
             key: 'address',
         },
         {
-            title: 'Normal Tickets',
-            dataIndex: 'nTickets',
-            key: 'nTickets',
-        },
-        {
-            title: 'V.I.P Tickets',
-            dataIndex: 'vTickets',
-            key: 'vTickets',
+            title: 'Outstanding',
+            dataIndex: 'outstanding',
+            key: 'outstanding',
+            render: (_, { outstanding }) => (
+                <>
+                    <Tag
+                        color={outstanding ? 'green' : 'red'}
+                        key={outstanding}
+                    >
+                        {outstanding ? 'TRUE' : 'FALSE'}
+                    </Tag>
+                </>
+            ),
         },
         {
             title: 'Action',
