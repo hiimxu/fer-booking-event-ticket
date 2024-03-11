@@ -31,7 +31,7 @@ const TicketQrModal = ({ isOpen, onClose, data, onSubmit }) => {
         <Modal
             actionLabel={
                 bookingData?.isRate
-                    ? 'You are wrote review for this tickets'
+                    ? 'You wrote review for this tickets'
                     : 'Rate'
             }
             body={bodyContent}
