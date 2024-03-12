@@ -15,7 +15,10 @@ const Footer = () => {
             <div className="border-b">
                 <Container>
                     <div className="flex gap-4 py-4">
-                        <Link href="/">
+                        <Link
+                            href="/"
+                            className="hover:text-slate-500 hover:underline"
+                        >
                             <p>About Us</p>
                         </Link>
                         <Link

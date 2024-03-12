@@ -29,11 +29,11 @@ export default function Home() {
                         <div>
                             <List
                                 pagination={{
-                                    pageSize: 18,
+                                    pageSize: 15,
                                     position: 'bottom',
                                     align: 'center',
                                 }}
-                                grid={{ gutter: 16, column: 6 }}
+                                grid={{ gutter: 16, column: 5 }}
                                 dataSource={listEvent}
                                 renderItem={(item) => (
                                     <List.Item>
