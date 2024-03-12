@@ -127,7 +127,7 @@
     {
       "name": "Vip A",
       "type": 0,
-      "quantity": 99,
+      "quantity": 100,
       "area": "A",
       "price": 10000,
       "event_id": "b6b4",
@@ -465,6 +465,14 @@
       "createAt": "10/03/2024 04:20:50",
       "status": "APPROVED",
       "isRate": true
+    },
+    {
+      "id": "a045",
+      "event_id": "b6b4",
+      "ticket_id": "1ccoc",
+      "user_id": "293b",
+      "status": "PENDING",
+      "createAt": "12/03/2024 14:03:02"
     }
   ],
   "notifications": [

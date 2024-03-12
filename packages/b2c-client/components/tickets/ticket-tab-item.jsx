@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import TicketItem from './ticket-item';
 import { Spin } from 'antd';
 import { currencyFormatter } from 'common/lib/utils';
@@ -30,6 +30,7 @@ const TicketTabItem = ({ eventId, isVip }) => {
                                 type={item?.type}
                                 area={item?.area}
                                 ticketId={item?.id}
+                                quantity={item?.quantity}
                             >
                                 <div className="flex flex-col gap-1.5">
                                     <div className="text-xl font-semibold text-slate-600">

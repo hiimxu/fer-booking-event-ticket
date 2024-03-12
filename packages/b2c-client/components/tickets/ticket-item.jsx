@@ -1,23 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import BookingModal from '../modals/booking-modal';
 import { cn } from 'common/lib/utils';
+import { useQuery } from 'common/hooks/useQuery';
 
-const TicketItem = ({ type, area, children, ticketId, disable }) => {
+const TicketItem = ({ type, area, children, ticketId, disable, quantity }) => {
     const [showBooking, setShowBooking] = useState(false);
+
+    const { data: bookingData, isLoading: bookingLoading } = useQuery(
+        `booking?ticket_id=${ticketId}`,
+        { id: ticketId }
+    );
+
+    const ticketSold = useMemo(() => {
+        return bookingData?.filter((item) => item?.status !== 'REJECT')?.length;
+    }, [bookingData]);
+
+    console.log(ticketSold);
 
     return (
         <>
             <div
                 className={cn(
                     'flex h-[162px] w-full rounded-lg border',
-                    disable ? '' : 'cursor-pointer'
+                    disable || ticketSold >= quantity ? '' : 'cursor-pointer'
                 )}
                 onClick={() => {
-                    if (disable) return;
+                    if (disable || ticketSold >= quantity) return;
                     setShowBooking(true);
                 }}
             >
-                <div className="flex-1 p-4">{children}</div>
+                <div className="flex-1 p-4">
+                    {children}
+                    {ticketSold >= quantity && (
+                        <div className="mt-2 text-xl font-semibold text-rose-600">
+                            Sold out
+                        </div>
+                    )}
+                </div>
                 <div className="relative flex h-[100%] items-center justify-center border-l-2 border-dashed px-6">
                     <p className="uppercase">
                         {type === 0 ? 'V' : 'N'}-{area}
