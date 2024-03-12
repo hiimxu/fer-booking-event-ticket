@@ -4,9 +4,15 @@ import { ListingCard } from '~/components/listings/listing-card';
 import { useQuery } from 'common/hooks/useQuery';
 import BannerSlider from '~/components/banner-slider';
 import ListingRecommend from '~/components/listings/listing-recommend';
+import { useMemo } from 'react';
+import { List } from 'antd';
 
 export default function Home() {
     const { data } = useQuery('events');
+
+    const listEvent = useMemo(() => {
+        return data?.reverse();
+    }, [data]);
 
     return (
         <>
@@ -20,19 +26,21 @@ export default function Home() {
                         <h2 className="text-2xl font-semibold">
                             All events available right now
                         </h2>
-                        <div
-                            className={cn(
-                                'grid grid-cols-1 gap-8',
-                                'sm:grid-cols-2',
-                                'md:grid-cols-3',
-                                'lg:grid-cols-4',
-                                'xl:grid-cols-5',
-                                '2xl:grid-cols-6'
-                            )}
-                        >
-                            {data?.map((item) => (
-                                <ListingCard key={item?.id} data={item} />
-                            ))}
+                        <div>
+                            <List
+                                pagination={{
+                                    pageSize: 18,
+                                    position: 'bottom',
+                                    align: 'center',
+                                }}
+                                grid={{ gutter: 16, column: 6 }}
+                                dataSource={listEvent}
+                                renderItem={(item) => (
+                                    <List.Item>
+                                        <ListingCard data={item} />
+                                    </List.Item>
+                                )}
+                            />
                         </div>
                     </div>
                 </Container>

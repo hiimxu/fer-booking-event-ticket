@@ -1,20 +1,18 @@
-import { Button, Table, Spin } from 'antd';
+import { Button, Table, Spin, Rate } from 'antd';
 import Link from 'next/link';
 import { LeftOutlined } from '@ant-design/icons';
 import { useMemo } from 'react';
 import Container from '~/components/container';
 import { useRouter } from 'next/router';
 import { useQuery } from 'common/hooks/useQuery';
-import { QUANLITY } from 'common/constant/constant';
+import { QUALITY } from 'common/constant/constant';
 
 const Tickets = () => {
     const { query } = useRouter();
     const { id } = query;
-    const {
-        data: listTicket,
-        isLoading: ticketLoading,
-        reload,
-    } = useQuery(`comments?event_id=${id}`);
+    const { data: listTicket, isLoading: ticketLoading } = useQuery(
+        `comments?event_id=${id}`
+    );
 
     const dataSource = useMemo(() => {
         return listTicket?.map((item) => {
@@ -25,23 +23,28 @@ const Tickets = () => {
                 createAt: item?.createAt,
             };
         });
-    }, [listTicket, id]);
+    }, [listTicket]);
 
     const columns = [
-        {
-            title: 'quanlity',
-            dataIndex: 'quality',
-            key: 'quality',
-            width: 100,
-            filters: QUANLITY,
-            onFilter: (value, record) => {
-                return record.quality == value;
-            },
-        },
         {
             title: 'Comment',
             dataIndex: 'comment',
             key: 'comment',
+        },
+        {
+            title: 'Quality',
+            dataIndex: 'quality',
+            key: 'quality',
+            width: 250,
+            filters: QUALITY,
+            onFilter: (value, record) => {
+                return record.quality == value;
+            },
+            render: (_, { quality }) => (
+                <>
+                    <Rate value={quality} />
+                </>
+            ),
         },
         {
             title: 'Create at',
@@ -55,7 +58,7 @@ const Tickets = () => {
         <Spin spinning={ticketLoading}>
             <Container>
                 <div className="mb-2">
-                    <Link href="/tickets">
+                    <Link href="/feedback">
                         <Button icon={<LeftOutlined />}>Back</Button>
                     </Link>
                 </div>

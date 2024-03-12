@@ -11,7 +11,7 @@ export const TicketType = [
     { id: 1, name: 'Normal' },
 ];
 
-export const QUANLITY = [
+export const QUALITY = [
     { text: '5 Start', value: 5 },
     { text: '4 Start', value: 4 },
     { text: '3 Start', value: 3 },
