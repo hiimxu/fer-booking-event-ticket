@@ -47,7 +47,7 @@ export const AlertShare = ({
                             <FacebookIcon size={32} round />
                         </FacebookShareButton>
 
-                        <FacebookMessengerShareButton
+                        {/* <FacebookMessengerShareButton
                             url={linkShare}
                             appId={''}
                         >
@@ -61,7 +61,7 @@ export const AlertShare = ({
                             }
                         >
                             <TelegramIcon size={32} round />
-                        </TelegramShareButton>
+                        </TelegramShareButton> */}
                     </div>
                     <div className="border-box m-auto mt-4 flex w-full items-center rounded-md px-4 py-3">
                         <span className="product-link-share text-primary-gray text-base">
